@@ -23,33 +23,20 @@
 	var TCommander = angular.module('TaskCommanderApp', ['ngRoute','ngMessages']);
 	</script>
 	<!-- Angular Routing Source -->
-	<script type="text/javascript" src="./scripts/routing_script.js"></script>
+	<script type="text/javascript" src="./scripts/routing_scripts.js"></script>
 	<!-- Factory Source -->
-	<script type="text/javascript" src="./scripts/factory_script.js"></script>
+	<script type="text/javascript" src="./scripts/factory_scripts.js"></script>
 	<!-- Controller Source -->
-	<script type="text/javascript" src="./scripts/controller_script.js"></script>
+	<script type="text/javascript" src="./scripts/controller_scripts.js"></script>
 </head>
 <body>
 	<!-- static angular navbar -->
-	<div id="navbar" ng-controller="navbar_controller">
+	<div id="navbar" ng-controller="nav_controller">
 		Static Header
 	</div>
 	<!-- controllers view -->
 	<div ng-view>
-<!-- move to partial view -->	
-		<form>
-			<label for="task_name">
-				Task Name:<input type="text" name="task-name">
-			</label>
-			<label for="task_length">
-				Time Consumption:<input type="text" name="task_length">
-			</label>
-			<label for="task_location">
-				Task Location:<input type="text" name="task_location">
-			</label>
-		</form>
+
 	</div>
 </body>
 </html>
-
-<!-- move form to partial view -->
