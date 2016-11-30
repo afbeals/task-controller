@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<!-- give app control -->
+<html ng-app="TaskCommanderApp" lang="en">
+<head>
+	<meta name="Task Commander" description="Take control of your task" />
+	<title>Task Commander</title>
+	<!--Angular -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+	<!-- Angular Routes -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.15/angular-route.min.js"></script>
+	<!-- Bootstrap/Jquery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
+	<!-- CSS Files -->
+	<link rel="stylesheet" type="text/css" href="./css/TCommander_style.css">
+	<!-- ngmessages for client side validation-->
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-messages.js"></script>
+	<!-- initialize app -->
+	<script type="text/javascript">
+	var TCommander = angular.module('TaskCommanderApp', ['ngRoute','ngMessages']);
+	</script>
+	<!-- Angular Routing Source -->
+	<script type="text/javascript" src="./scripts/routing_script.js"></script>
+	<!-- Factory Source -->
+	<script type="text/javascript" src="./scripts/factory_script.js"></script>
+	<!-- Controller Source -->
+	<script type="text/javascript" src="./scripts/controller_script.js"></script>
+</head>
+<body>
+	<!-- static angular navbar -->
+	<div id="navbar" ng-controller="navbar_controller">
+		Static Header
+	</div>
+	<!-- controllers view -->
+	<div ng-view>
+<!-- move to partial view -->	
+		<form>
+			<label for="task_name">
+				Task Name:<input type="text" name="task-name">
+			</label>
+			<label for="task_length">
+				Time Consumption:<input type="text" name="task_length">
+			</label>
+			<label for="task_location">
+				Task Location:<input type="text" name="task_location">
+			</label>
+		</form>
+	</div>
+</body>
+</html>
+
+<!-- move form to partial view -->
