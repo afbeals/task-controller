@@ -1,9 +1,8 @@
 var validate = require('mongoose-validator');
 //set validations
 
-module.exports = function(){
-	var validations = {};
-	validations.nameValidator : [
+module.exports = {
+	nameValidator : [
 		validate({
 			validator: 'isLength',
 			arguments: [3,50],
@@ -14,7 +13,5 @@ module.exports = function(){
 			passIfEmpty: true,
 			message: 'Name should contain alpha-numeric characters only'
 		})
-	];
-
-	return validations;
+	]
 }
