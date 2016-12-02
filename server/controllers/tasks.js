@@ -6,6 +6,6 @@ var User = mongoose.model('User');
 module.exports =
 {
 	createTask : function(req,res){
-		
+		console.log(req.body);
 	}
 }

@@ -5,7 +5,8 @@ var User = mongoose.model('User');
 
 module.exports =
 {
-	createRoutine : function(req,res){
-		
+	addToRoutine : function(req,res){
+		console.log(req.body);
+		res.end();
 	}
 }
