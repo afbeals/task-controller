@@ -20,14 +20,9 @@ module.exports = {
 			message: 'Please enter a valid email'
 		})
 	],
-	passwordValidator : [
-		validate({
-
-		})
-	],
 	taskValidator : [
 		validate({
-			validator: 'isAlphanumeric'j,
+			validator: 'isAlphanumeric',
 			passIfEmpty: true,
 			message: 'Task name should contain alpha-numeric characters only'
 		})

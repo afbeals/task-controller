@@ -1,7 +1,7 @@
 //require/use mongoose
 var mongoose = require('mongoose');
 //require/use schemas
-var schema = mongoose.schema;
+var Schema = mongoose.Schema;
 //require/use mongoose-validator
 var validation = require('./data-validations.js');
 //new schema
@@ -14,4 +14,4 @@ var taskSchema = new Schema(
 	created_at: {type: Date, default: new Date}
 })
 // create model
-var task = mongoose.model('Task',userSchema);
+var Task = mongoose.model('Task', taskSchema);

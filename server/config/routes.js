@@ -4,7 +4,7 @@ var users = require('../controllers/users.js');
 
 module.exports = function(app)
 {
-	app.get('', function(req,res){
-		
+	app.post('/addTaskToRoutine', function(req,res){
+		console.log(req.body.task_name);
 	})
 }

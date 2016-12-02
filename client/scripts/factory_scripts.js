@@ -12,8 +12,14 @@ TCommander.factory('task_factory', function($http, $location)
 		callback(test_group);
 	};
 	//pass single task data to BE
-	factory.addTask = function(data){
-		console.log(data);
+	factory.addTaskToRoutine = function(task){
+		$http.post('/addTaskToRoutine', task).success(function()
+		{
+			alert("Task successfully added!");
+		}).error(function()
+		{
+			alert("Uh oh, lets try that again. If problem persists, please contact us!");
+		})
 	};
 
 	//return object methods

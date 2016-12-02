@@ -5,7 +5,7 @@ var fs = require('fs');
 //file path
 var path = require('path');
 //create database
-mongoose.connect('mongodb://localhost/Stracker_App');
+mongoose.connect('mongodb://localhost/Task_controller');
 //locate models
 var models_path = path.join(__dirname, './../models');
 //load all models
