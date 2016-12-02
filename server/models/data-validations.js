@@ -19,5 +19,31 @@ module.exports = {
 			validator: 'isEmail',
 			message: 'Please enter a valid email'
 		})
+	],
+	passwordValidator : [
+		validate({
+
+		})
+	],
+	taskValidator : [
+		validate({
+			validator: 'isAlphanumeric'j,
+			passIfEmpty: true,
+			message: 'Task name should contain alpha-numeric characters only'
+		})
+	],
+	durationValidator : [
+		validate({
+			validator: 'isNumeric',
+			passIfEmpty: false,
+			message: 'Please enter numeric characters only'
+		})
+	],
+	locationValidator : [
+		validate({
+			validator: 'isLength',
+			arguments: [5,75],
+			message: 'Location should be between {ARGS[0]} and {ARGS[1]} characters'
+		})
 	]
 }
