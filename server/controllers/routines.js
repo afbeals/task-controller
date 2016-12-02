@@ -8,7 +8,7 @@ module.exports =
 	addToRoutine : function(req,res){
 		console.log(req.body);
 		res.end();
-	}
+	},
 	createRoutine : function(req,res){
 		console.log(req);
 		
