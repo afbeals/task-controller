@@ -7,7 +7,12 @@ var validation = require('./data-validations.js');
 //new schema
 var userSchema = new Schema(
 {
-	first_name: {type: String, required: true, validation.nameValidator: nameValidator},
-	last_name: {type: String, required: true, validation.nameValidator: nameValidator},
-	email: String,
+	first_name: {type: String, required: true, validation: validation.nameValidator},
+	last_name: {type: String, required: true, validation: validation.nameValidator},
+	email: {type: String, required: true, validation: validation.emailValidator},
+	password: {type: String, required: true, validation: validation.passwordValidator}
+	created_at: {type: Date, default: new Date},
+
 })
+// create model
+var user = mongoose.model('User',userSchema);

@@ -13,5 +13,11 @@ module.exports = {
 			passIfEmpty: true,
 			message: 'Name should contain alpha-numeric characters only'
 		})
+	],
+	emailValidator : [
+		validate({
+			validator: 'isEmail',
+			message: 'Please enter a valid email'
+		})
 	]
 }
