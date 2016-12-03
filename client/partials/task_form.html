@@ -1,6 +1,6 @@
 <form>
 	<label for="task_name">
-		Task Name:<input type="text" name="task_name" ng-model="task.task_name" id="test" value=''>
+		Task Name:<input type="text" name="task_name" ng-model="task.task_name" id="test">
 	</label>
 	<label for="task_length">
 		Time Consumption:<input type="text" name="task_length" ng-model="task.task_length">
@@ -11,3 +11,11 @@
 	<button ng-click="addTaskToSesRoutine()">Test Me!</button>
 	<button ng-click="createRoutine()">Create a Routine</button>
 </form>
+
+<div id="printContent">
+<ul>
+	<li ng-repeat="task in currentTask">
+		{{task.task_name}},{{task.task_length}}
+	</li>
+</ul>
+</div>
