@@ -23,5 +23,5 @@ routes_setter(app);
 
 // listen on 8000
 app.listen(8000, function() {
- console.log("Stracker on port 8000!!");
+ console.log("TCommander on port 8000!!");
 })
