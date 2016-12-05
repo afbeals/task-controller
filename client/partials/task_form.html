@@ -22,7 +22,7 @@
 </div>
 <br />
 
-<div>
+<div ng-show="currentTask.length">
 	<ng-form name="save_routine_form">
 		<label for="save_Routine">
 			Save your routine above?
@@ -30,3 +30,5 @@
 		<label>
 	</ng-form>
 </div>
+
+<button ng-click="removeAllTask()" ng-show="currentTask.length">Remove all task?</button>

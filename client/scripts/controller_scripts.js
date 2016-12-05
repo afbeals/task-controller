@@ -76,6 +76,20 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 			alert('hmm something went wrong, please reload the page and try again.')
 		}
 	};
+	//remove all task from routine
+	$scope.removeAllTask = function(){
+		console.log($scope.currentTask,"sesStor",sessionStorage)
+		if($scope.currentTask.length > 1){
+			if (confirm('Are you sure you want to clear your task?')){
+			    console.log("yeuyspe");
+			    sessionStorage.clear();
+			    $scope.currentTask=[];
+			}
+		}else{
+			sessionStorage.clear();
+			$scope.currentTask=[];
+		}
+	}
 	//run initial functions for SPA
 	//initial run of loop to pull up current task
 	get_session_task();
