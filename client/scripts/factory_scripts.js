@@ -19,7 +19,15 @@ TCommander.factory('task_factory', function($http, $location)
 		}).error(function()
 		{
 			alert("Uh oh, lets try that again. If problem persists, please contact us!");
-		})
+		});
+	};
+	//get current routine and push to backend
+	factory.createRoutine = function(routine){
+		$http.post('/createRoutine',routine).success(function(){
+			alert("Routine created successfully!");
+		}).error(function(){
+			alert('....well that was weird, lets try that again!');
+		});
 	};
 
 	//return object methods

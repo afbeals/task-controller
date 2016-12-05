@@ -1,4 +1,4 @@
-<form>
+<ng-form name="task_form">
 	<label for="task_name">
 		Task Name:<input type="text" name="task_name" ng-model="task.task_name" id="test">
 	</label>
@@ -9,13 +9,24 @@
 		Task Location:<input type="text" name="task_location" ng-model="task.task_location">
 	</label> 
 	<button ng-click="addTaskToSesRoutine()">Test Me!</button>
-	<button ng-click="createRoutine()">Create a Routine</button>
-</form>
+
+</ng-form>
 
 <div id="printContent">
-<ul>
-	<li ng-repeat="task in currentTask">
-		{{task.task_name}},{{task.task_length}}
-	</li>
-</ul>
+	<ul>
+		<li ng-repeat="task in currentTask">
+			{{task.task_name}},{{task.task_length}}
+			<button ng-click="removeTask(task.task_name)">Remove Task</button>
+		</li>
+	</ul>
+</div>
+<br />
+
+<div>
+	<ng-form name="save_routine_form">
+		<label for="save_Routine">
+			Save your routine above?
+			<button ng-click="createRoutine()" >Create my routine!</button>
+		<label>
+	</ng-form>
 </div>

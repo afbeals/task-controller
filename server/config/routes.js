@@ -6,5 +6,9 @@ module.exports = function(app)
 {
 	app.post('/addTaskToRoutine', function(req,res){
 		routines.addToRoutine(req,res);
+	}),
+	app.post('/createRoutine', function(req,res){
+		console.log(req.body);
+		res.sendStatus(200);
 	})
 }

@@ -9,6 +9,7 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
 	$scope.currentTask = [];
+	$scope.dynForm = {}
 
 
 	var routine_check = function(data,callback){
@@ -20,18 +21,22 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	};
 	
 
-	$scope.createRoutine = function(){
-		routine_check($scope.task, function(data){task_factory.addTaskToRoutine(data)});
-	}
+	// $scope.createRoutine = function(){
+	// 	routine_check($scope.task, function(data){task_factory.addTaskToRoutine(data)});
+	// }
 	$scope.consoleLogStatic = function(){
 		//pass consoleLogFactory the callback that will run the data defined by factory
 		task_factory.consoleLogStatic(function(data){
 			console.log(data);
 		});
 	};
+	//pass routine to BE
+	$scope.createRoutine = function(){
+		task_factory.createRoutine($scope.currentTask);
 
+	};
 
-
+	
 
 
 
@@ -56,8 +61,21 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		 } else {
 		 	alert('sorry '+$scope.task.task_name+' already exist, but you can still remove, edit, or use a different name!')
 		 }
+		 $scope.task={};
 	};
-
+	//remove task from routine list
+	//take in unique name of task
+	$scope.removeTask = function(name){
+		//if task exist in storage
+		if(sessionStorage.getItem("task:"+name)){
+			//remove from sessionStorage
+			sessionStorage.removeItem("task:"+name);
+			//and remove from array to update front end
+			$scope.currentTask.splice(name, 1);
+		}else{
+			alert('hmm something went wrong, please reload the page and try again.')
+		}
+	};
 	//run initial functions for SPA
 	//initial run of loop to pull up current task
 	get_session_task();
