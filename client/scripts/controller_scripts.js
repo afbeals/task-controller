@@ -35,8 +35,10 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		task_factory.createRoutine($scope.currentTask);
 
 	};
-
-	
+	//clear form values
+	$scope.clearForm = function(){
+		$scope.task = {};
+	}
 
 
 
