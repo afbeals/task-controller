@@ -40,7 +40,33 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		$scope.task = {};
 	}
 
+	var cities = "Atlanta, USA";
+  	var geocoder= new google.maps.Geocoder();
+  
+   	$scope.markers = [];
+   
+   	var createMarker = function (info){
+        var marker = new google.maps.Marker({
+            map: $scope.map,
+            position: new google.maps.LatLng(info.lat(), info.lng())
+        });
+   	}
 
+  	geocoder.geocode( { 'address': cities }, function(results, status) {
+    	if (status == google.maps.GeocoderStatus.OK) {
+        	newAddress = results[0].geometry.location;
+        	$scope.map.setCenter(newAddress);
+        	createMarker(newAddress)
+    	}
+  	 });
+
+  $scope.mapOptions = {
+        zoom: 4,
+        //center: new google.maps.LatLng(41.923, 12.513),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    }
+
+    $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions);
 
 	//sessionStorage section
 	//loop through sessionStorage to get currently stored task
