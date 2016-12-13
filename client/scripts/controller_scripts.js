@@ -75,6 +75,46 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 			$scope.currentTask.push(JSON.parse(sessionStorage[task]));
 		}
 	}
+
+	var origin1 = 'Salem, OR'
+	var origin2 = 'Portland, OR 97216';
+	var destinationA = 'Stockholm, Sweden';
+	var destinationB = new google.maps.LatLng(50.087692, 14.421150);
+
+	var service = new google.maps.DistanceMatrixService();
+	service.getDistanceMatrix(
+	  {
+	    origins: [origin1, origin2],
+	    destinations: [destinationA, destinationB],
+	    travelMode: 'DRIVING'
+	    // transitOptions: TransitOptions,
+	    // drivingOptions: DrivingOptions,
+	    // unitSystem: UnitSystem,
+	    // avoidHighways: Boolean,
+	    // avoidTolls: Boolean,
+	  }, callback);
+
+	function callback(response, status) {
+	  if (status == 'OK') {
+	    var origins = response.originAddresses;
+	    var destinations = response.destinationAddresses;
+	    console.log(response);
+	    for (var i = 0; i < origins.length; i++) {
+	      var results = response.rows[i].elements;
+	      for (var j = 0; j < results.length; j++) {
+	        var element = results[j];
+	        var distance = element.distance.text;
+	        console.log(element.distance);
+	        var duration = element.duration.text;
+	        var from = origins[i];
+	        var to = destinations[j];
+	      }
+	    }
+	  }
+	}
+
+
+
 	//add addTask method to $scope
 	$scope.addTaskToSesRoutine = function(){
 		//grab task_name as identifier
