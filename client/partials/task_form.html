@@ -5,7 +5,7 @@
 		<p ng-show="task_form.task_name.$invalid && !task_form.task_name.$pristine && task_form.task_name.$touched">Task name is required.</p>
 	</label>
 	<label for="task_length">
-		Time Consumption:<input type="number" name="task_length" ng-model="task.task_length" min="0" max="1440" required>
+		Time Consumptionj(min):<input type="number" name="task_length" ng-model="task.task_length" min="0" max="1440" required>
 		<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
 		<p ng-show="task_form.task_length.$invalid && !task_form.task_length.$pristine && task_form.task_length.$touched">Task Consumption is required.</p>
 	</label>
