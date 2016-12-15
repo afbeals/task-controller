@@ -51,3 +51,13 @@
       
     </style>
 <div id="map"></div>
+
+<ng-form name='destinationForm'>
+	<label for="location_origin">
+		<input type="text" name='location_origin' ng-model="address.location_origin">
+	</label>
+	<label for="location_destination">
+		<input type="text" name='location_destination' ng-model="address.location_destination">
+	</label>
+	<button ng-click='getNewDistance(address.location_origin,address.location_destination)'>Test Me!</button>
+</ng-form>
