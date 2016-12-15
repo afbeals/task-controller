@@ -9,7 +9,8 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
 	$scope.currentTask = [];
-	$scope.dynForm = {}
+	$scope.dynForm = {};
+	$scope.address = {};
 
 
 	var routine_check = function(data,callback){
@@ -76,43 +77,44 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		}
 	}
 
-	var origin1 = 'Salem, OR'
-	var origin2 = 'Portland, OR 97216';
+	var origin1 = new google.maps.LatLng(55.930385, -3.118425);
+	var origin2 = 'Greenwich, England';
 	var destinationA = 'Stockholm, Sweden';
 	var destinationB = new google.maps.LatLng(50.087692, 14.421150);
 
-	var service = new google.maps.DistanceMatrixService();
-	service.getDistanceMatrix(
-	  {
-	    origins: [origin1, origin2],
-	    destinations: [destinationA, destinationB],
-	    travelMode: 'DRIVING'
-	    // transitOptions: TransitOptions,
-	    // drivingOptions: DrivingOptions,
-	    // unitSystem: UnitSystem,
-	    // avoidHighways: Boolean,
-	    // avoidTolls: Boolean,
-	  }, callback);
+	$scope.getNewDistance = function(origina,destination1){
+		console.log($scope.address);
+		var service = new google.maps.DistanceMatrixService();
+		service.getDistanceMatrix(
+		  {
+		    origins: [origina],
+		    destinations: [destination1],
+		    travelMode: 'DRIVING'
+		    // transitOptions: TransitOptions,
+		    // drivingOptions: DrivingOptions,
+		    // unitSystem: UnitSystem,
+		    // avoidHighways: Boolean,
+		    // avoidTolls: Boolean,
+		  }, callback);
 
-	function callback(response, status) {
-	  if (status == 'OK') {
-	    var origins = response.originAddresses;
-	    var destinations = response.destinationAddresses;
-	    console.log(response);
-	    for (var i = 0; i < origins.length; i++) {
-	      var results = response.rows[i].elements;
-	      for (var j = 0; j < results.length; j++) {
-	        var element = results[j];
-	        var distance = element.distance.text;
-	        console.log(element.distance);
-	        var duration = element.duration.text;
-	        var from = origins[i];
-	        var to = destinations[j];
-	      }
-	    }
-	  }
+		function callback(response, status) {
+		  if (status == 'OK') {
+		    var origins = response.originAddresses;
+		    var destinations = response.destinationAddresses;
+		    console.log(response.rows[0].elements[0].duration.text);
+		    for (var i = 0; i < origins.length; i++) {
+		      var results = response.rows[i].elements;
+		      for (var j = 0; j < results.length; j++) {
+		        var element = results[j];
+		        var distance = element.distance.text;
+		        var duration = element.duration.text;
+		        var from = origins[i];
+		        var to = destinations[j];
+		      }
+		    }
+		  }
+		}
 	}
-
 
 
 	//add addTask method to $scope
