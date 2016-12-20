@@ -22,7 +22,7 @@
 
 <div id="printContent">
 	<ul>
-		<li ng-repeat="task in currentTask">
+		<li ng-repeat="task in routine">
 			{{task.task_name}},{{task.task_length}}
 			<button ng-click="removeTask(task.task_name)">Remove Task</button>
 		</li>
@@ -30,7 +30,7 @@
 </div>
 <br />
 
-<div ng-show="currentTask.length">
+<div ng-show="routine.length">
 	<ng-form name="save_routine_form">
 		<label for="save_Routine">
 			Save your routine above?
@@ -39,7 +39,7 @@
 	</ng-form>
 </div>
 
-<button ng-click="removeAllTask()" ng-show="currentTask.length > 1">Remove all task?</button>
+<button ng-click="removeAllTask()" ng-show="routine.length > 1">Remove all task?</button>
 <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
