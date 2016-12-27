@@ -97,28 +97,34 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		    // avoidTolls: Boolean,
 		}, distanceMatrixResponse);
 	}
-	//distance matrix response function
-    var distanceMatrixResponse = function(response, status) 
-    {
-	  if (status == 'OK') {
-	    var origins = response.originAddresses;
-	    var destinations = response.destinationAddresses;
-	    //add task duration to task (get ready to submit to database)
-	    $scope.task.task_duration=Math.floor(response.rows[0].elements[0].duration.value / 60);
-	    //clear task for future use
-	    $scope.task = {};
-	    // for (var i = 0; i < origins.length; i++) {
-	    //   var results = response.rows[i].elements;
-	    //   for (var j = 0; j < results.length; j++) {
-	    //     var element = results[j];
-	    //     var distance = element.distance.text;
-	    //     var duration = element.duration.text;
-	    //     var from = origins[i];
-	    //     var to = destinations[j];
-	    //   }
-	    // }
-	  }
-	}
+
+    //distance matrix response function
+    var distanceMatrixResponse = function(response,status){
+        if (status == 'OK') {
+            var origins = response.originAddresses;
+            var destinations = response.destinationAddresses;
+            var task_name = $scope.task.task_name;
+            var session_task_name = "task:"+task_name;
+            //add task duration to task (get ready to submit to database)
+            $scope.task.task_duration=Math.floor(response.rows[0].elements[0].duration.value / 60);
+            //set each task by 'task: "task_name"' with object information
+            sessionStorage.setItem(session_task_name,JSON.stringify($scope.task));
+            //push new task to array to update printed list
+            $scope.routine.push(JSON.parse(sessionStorage[session_task_name]));
+            $scope.task={};
+            $scope.$apply();
+            // for (var i = 0; i < origins.length; i++) {
+            //   var results = response.rows[i].elements;
+            //   for (var j = 0; j < results.length; j++) {
+            //     var element = results[j];
+            //     var distance = element.distance.text;
+            //     var duration = element.duration.text;
+            //     var from = origins[i];
+            //     var to = destinations[j];
+            //   }
+            // }
+        }
+    }
 
 	//sessionStorage 
 	//loop through sessionStorage to get currently stored task
@@ -130,37 +136,27 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	
 	var testHome = "Portland, OR";
 
-	//scope task method
-	$scope.addTaskToSesRoutine = function(){
-		//grab task_name as identifier
-		var task_name = $scope.task.task_name;
-		var session_task_name = "task:"+task_name;
-		//compute length of routine
-		var size = Object.keys(sessionStorage).length;
-		//check if already exist, if it does then alert the user
-		 if(!sessionStorage[session_task_name]){
-		 	//if first item in list then use home as origin location
-		 	if(sessionStorage[session_task_name] == sessionStorage[Object.keys(sessionStorage)[0]]){
-				//set each task by 'task: "task_name"' with object information
-			 	sessionStorage.setItem(session_task_name,JSON.stringify($scope.task));
-			 	//push new task to array to update printed list
-			 	$scope.routine.push(JSON.parse(sessionStorage[session_task_name]));
-			 	//run distance matrix to get duration in seconds
-				getNewDistance(testHome, $scope.task.task_location);
-			}else{
-				//set each task by 'task: "task_name"' with object information
-			 	sessionStorage.setItem(session_task_name,JSON.stringify($scope.task));
-			 	//push new task to array to update printed list
-			 	$scope.routine.push(JSON.parse(sessionStorage[session_task_name]));
-			 	//run distance matrix to get duration in seconds
-				getNewDistance(sessionStorage[Object.keys(sessionStorage)[size - 1]], $scope.task.task_location);
-			}
-		 } else {
-		 	alert('sorry '+$scope.task.task_name+' already exist, but you can still remove, edit, or use a different name!')
-		 }
-		 //clear task afterwards for next task
-		 //$scope.task={};
-	};
+    //scope task method
+    $scope.addTaskToSesRoutine = function(){
+
+        //grab task_name as identifier
+        var task_name = $scope.task.task_name;
+        var session_task_name = "task:"+task_name;
+        //compute length of routine
+        var size = Object.keys(sessionStorage).length;
+        //check if already exist, if it does then alert the user
+        if(!sessionStorage[session_task_name]){
+            //if first item in list then use home as origin location
+            if(sessionStorage[session_task_name] == sessionStorage[Object.keys(sessionStorage)[0]]){
+                getNewDistance(testHome, $scope.task.task_location);
+            }else{
+                getNewDistance(JSON.parse(sessionStorage[Object.keys(sessionStorage)[size - 1]]).task_location, $scope.task.task_location);
+            }
+        } else {
+            alert('sorry '+$scope.task.task_name+' already exist, but you can still remove, edit, or use a different name!')
+        }
+        
+    };
 	
 	//remove task from routine list
 	//take in unique name of task
