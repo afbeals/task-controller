@@ -105,13 +105,16 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
             var destinations = response.destinationAddresses;
             var task_name = $scope.task.task_name;
             var session_task_name = "task:"+task_name;
+            console.log(response);
             //add task duration to task (get ready to submit to database)
-            $scope.task.task_duration=Math.floor(response.rows[0].elements[0].duration.value / 60);
+            $scope.task.task_duration=Math.floor(response.rows[0].elements[0].duration.value);
             //set each task by 'task: "task_name"' with object information
             sessionStorage.setItem(session_task_name,JSON.stringify($scope.task));
             //push new task to array to update printed list
             $scope.routine.push(JSON.parse(sessionStorage[session_task_name]));
+            calculateTotalDuration(timeConvert);
             $scope.task={};
+            
             $scope.$apply();
             // for (var i = 0; i < origins.length; i++) {
             //   var results = response.rows[i].elements;
@@ -138,7 +141,6 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 
     //scope task method
     $scope.addTaskToSesRoutine = function(){
-
         //grab task_name as identifier
         var task_name = $scope.task.task_name;
         var session_task_name = "task:"+task_name;
@@ -157,7 +159,26 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
         }
         
     };
-	
+
+    //calculate distance
+    var calculateTotalDuration = function(callback){
+    	var timeTotal = 0;
+    	for(var duration in $scope.routine){
+    		timeTotal+=$scope.routine[duration].task_duration;
+    		console.log($scope.routine);
+    		console.log($scope.routine[duration].task_duration);
+		}
+		console.log()
+		console.log(timeTotal)
+		callback(timeTotal);
+    }
+	function timeConvert (time){
+		time = Number(time);
+		var h = Math.floor(time / 3600);
+		var m = Math.floor(time % 3600 / 60);
+		var s = Math.floor(time % 3600 % 60);
+		console.log(((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s)); 
+	}
 	//remove task from routine list
 	//take in unique name of task
 	$scope.removeTask = function(name){
