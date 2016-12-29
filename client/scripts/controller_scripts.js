@@ -26,9 +26,9 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		}
 	};
 	//run routine_check and pass task obj, then run factory with passed info
-	$scope.createroutine = function(){
-		routine_check($scope.task, function(data){task_factory.addTaskToroutine(data)});
-	}
+	// $scope.createroutine = function(){
+	// 	routine_check($scope.task, function(data){task_factory.addTaskToroutine(data)});
+	// }
 
 
 	//demonstrators
@@ -42,8 +42,8 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 
 	//Controller Methods
 	//pass routine (array of obj) to factory, to get sent to BE
-	$scope.createroutine = function(){
-		task_factory.createroutine($scope.routine);
+	$scope.createRoutine = function(){
+		task_factory.createRoutine($scope.routine,$scope.totalTime);
 
 	};
 	//clear form values
