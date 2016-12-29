@@ -11,6 +11,7 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	$scope.routine = [];
 	$scope.dynForm = {};
 	$scope.address = {};
+	$scope.totalTime = "";
 
 	//initialize variables
 	
@@ -165,11 +166,8 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
     	var timeTotal = 0;
     	for(var duration in $scope.routine){
     		timeTotal+=$scope.routine[duration].task_duration;
-    		console.log($scope.routine);
-    		console.log($scope.routine[duration].task_duration);
+    		timeTotal+=($scope.routine[duration].task_length * 60);
 		}
-		console.log()
-		console.log(timeTotal)
 		callback(timeTotal);
     }
 	function timeConvert (time){
@@ -177,17 +175,18 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		var h = Math.floor(time / 3600);
 		var m = Math.floor(time % 3600 / 60);
 		var s = Math.floor(time % 3600 % 60);
-		console.log(((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s)); 
+		$scope.totalTime = ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
 	}
 	//remove task from routine list
 	//take in unique name of task
 	$scope.removeTask = function(name){
-		//if task exist in storage
 		if(sessionStorage.getItem("task:"+name)){
 			//remove from sessionStorage
+			var elementPosition = $scope.routine.map(function(x) {return x.task_name; }).indexOf(name);
 			sessionStorage.removeItem("task:"+name);
 			//and remove from array to update front end
-			$scope.routine.splice(name, 1);
+			$scope.routine.splice(elementPosition, 1);
+			calculateTotalDuration(timeConvert);
 		}else{
 			alert('hmm something went wrong, please reload the page and try again.')
 		}
@@ -198,13 +197,18 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 			if (confirm('Are you sure you want to clear your task?')){
 			    sessionStorage.clear();
 			    $scope.routine=[];
+			    $scope.timeTotal="";
+			    $scope.apply();
 			}
 		}else{
 			sessionStorage.clear();
 			$scope.routine=[];
+			$scope.timeTotal="";
+			$scope.apply();
 		}
 	}
 	//run initial functions for SPA
 	//initial run of loop to pull up current task
 	get_session_task();
+	calculateTotalDuration(timeConvert);
 }]);
