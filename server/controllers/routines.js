@@ -10,7 +10,14 @@ module.exports =
 		res.end();
 	},
 	createRoutine : function(req,res){
-		console.log(req);
-		
+		console.log(req[1]);
+		// var routine = new Routine({routine_name: req.body.name, quote: req.body.quote});
+	 //    quote.save(function(err) {
+	 //      if(err){
+	 //        console.log("something went wrong");
+	 //      } else {
+	 //        res.redirect('/main');
+	 //      }
+	 //    })
 	}
 }

@@ -1,0 +1,20 @@
+<ng-form name="login_form" novalidate>
+
+
+	<label for="username">
+		Username:<input type="text" name="username" ng-model="user.username" required>
+		<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+		<p ng-show="login_form.username.$invalid && !login_form.username.$pristine && login_form.username.$touched">Username is required.</p>
+	</label>
+
+	<label for="password">
+		Password:<input type="password" name="password" ng-model="user.password" required>
+		<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
+		<p ng-show="login_form.password.$invalid && !login_form.password.$pristine && login_form.password.$touched">Password is required.</p>
+	</label>
+
+	<button ng-click="loginUser(); login_form.$setPristine();login_form.$setUntouched()" ng-disabled="login_form.$pristine || !login_form.$dirty || login_form.$invalid" type="submit">Login!</button>
+	<a href="">Register Here!</a>
+
+
+</ng-form>

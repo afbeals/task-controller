@@ -12,7 +12,6 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	$scope.dynForm = {};
 	$scope.address = {};
 	$scope.totalTime = "";
-
 	//initialize variables
 	
 
@@ -46,6 +45,11 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 		task_factory.createRoutine($scope.routine,$scope.totalTime);
 
 	};
+
+	$scope.addAllTask = function(){
+		task_factory.addAllTask($scope.routine,function(){task_factory.createRoutine($scope.routine,$scope.totalTime)});
+	};
+
 	//clear form values
 	$scope.clearForm = function(){
 		$scope.task = {};
@@ -198,17 +202,37 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 			    sessionStorage.clear();
 			    $scope.routine=[];
 			    $scope.timeTotal="";
-			    $scope.apply();
+			    $scope.$apply();
 			}
 		}else{
 			sessionStorage.clear();
 			$scope.routine=[];
 			$scope.timeTotal="";
-			$scope.apply();
+			$scope.$apply();
 		}
 	}
 	//run initial functions for SPA
 	//initial run of loop to pull up current task
 	get_session_task();
 	calculateTotalDuration(timeConvert);
+}]);
+
+//Users Controller
+TCommander.controller('users_controller',['$scope', 'users_factory', function ($scope, users_factory){
+	$scope.user={};
+
+
+	//password confirmation match check:
+	$scope.passMatch = function(){
+	}
+
+	$scope.registerUser = function(){
+		users_factory.registerUser($scope.user);
+		$scope.user={};
+	}
+
+	$scope.loginUser = function(){
+		users_factory.loginUser($scope.user);
+	}
+
 }]);
