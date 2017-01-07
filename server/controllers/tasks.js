@@ -9,8 +9,8 @@ module.exports =
 		console.log(req);
 	},
 	addAllTask : function(req,res){
-		console.log('req: ',req);
-		Task.insertMany(req,function(err, docs){
+		console.log('req: ',req.body);
+		Task.insertMany(req.body,function(err, docs){
 			if(err)
 	        {
 	          console.log("my err: ",err);

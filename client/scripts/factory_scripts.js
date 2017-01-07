@@ -37,22 +37,36 @@ TCommander.factory('task_factory', function($http, $location)
 	}
 
 	//get current routine and push to backend
-	factory.createRoutine = function(routine,duration){
-		// var routineCopy = [];
-		// routineCopy = angular.copy(routine);
-		// routineCopy.push({total_routine_duration:duration});
-		// var masterObj = {};
-		// for(var x = 0; x < routineCopy.length-1; ++x){
-		//     masterObj[x] = {task_name:routineCopy[x].task_name,length:routineCopy[x].task_length,duration:routineCopy[x].task_duration,location:routineCopy[x].task_location};
-		// }
-		// masterObj[routineCopy.length-1] = routineCopy[routineCopy.length-1];
-		// console.log("routine: ",routine,"routineCopy: ",routineCopy,"masterObj: ",masterObj)
-		// $http.post('/createRoutine',masterObj).success(function(){
-		// 	alert("Routine created successfully!");
-		// }).error(function(){
-		// 	alert('....well that was weird, lets try that again!');
-		// });
-		console.log("now ran createRoutine")
+	// factory.createRoutine = function(routine,duration){
+	// 	// var routineCopy = [];
+	// 	// routineCopy = angular.copy(routine);
+	// 	// routineCopy.push({total_routine_duration:duration});
+	// 	// var masterObj = {};
+	// 	// for(var x = 0; x < routineCopy.length-1; ++x){
+	// 	//     masterObj[x] = {task_name:routineCopy[x].task_name,length:routineCopy[x].task_length,duration:routineCopy[x].task_duration,location:routineCopy[x].task_location};
+	// 	// }
+	// 	// masterObj[routineCopy.length-1] = routineCopy[routineCopy.length-1];
+	// 	// console.log("routine: ",routine,"routineCopy: ",routineCopy,"masterObj: ",masterObj)
+	// 	// $http.post('/createRoutine',masterObj).success(function(){
+	// 	// 	alert("Routine created successfully!");
+	// 	// }).error(function(){
+	// 	// 	alert('....well that was weird, lets try that again!');
+	// 	// });
+	// 	console.log("now ran createRoutine")
+	// };
+
+	factory.createRoutine = function(newRoutine){
+		console.log(newRoutine);
+		var routineCopy = angular.copy(newRoutine);
+		for(var x = 0; x <routineCopy.tasks.length;++x){
+			delete routineCopy.tasks[x].task_duration;
+		}
+		$http.post('/createRoutine',routineCopy).success(function(){
+			console.log("successful addAllTask");
+			//callback();
+		}).error(function(){
+			alert('....well that was weird, lets try that again!');
+		});
 	};
 
 	//return object methods
@@ -72,10 +86,12 @@ TCommander.factory('users_factory', function($http, $location) {
 		})
 	}
 
-	factory.loginUser = function(user){
-		$http.post('loginUser',user).success(function(){
-			console.log('user'+ user.username + 'sucessfully added');
-			$location.path("#/Create-A-Routine");
+	factory.loginUser = function(user,callback){
+		$http.post('/loginUser',user).success(function(data){
+			console.log('user'+ user.username + ' sucessfully added');
+			console.log(data);
+			$location.path("Create-A-Routine");
+			callback(data);
 		}).error(function(){
 			console.log("there was an error logging user in")
 		})

@@ -1,11 +1,12 @@
 //Front end controllers
 //Navbar Controller
-TCommander.controller('nav_controller',['$scope', 'task_factory', function ($scope, task_factory){
+TCommander.controller('nav_controller',['$cookies','$scope', 'task_factory', function ($cookies, $scope, task_factory){
 	console.log('using nav_controller controller');
+	console.log($cookies.getAll());
 }]);
 
 //Form Controller
-TCommander.controller('task_controller',['$scope', 'task_factory',function($scope, task_factory){
+TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',function($cookies, $scope, task_factory){
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
 	$scope.routine = [];
@@ -13,6 +14,8 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	$scope.address = {};
 	$scope.totalTime = "";
 	//initialize variables
+
+	$scope.newRoutine = {tasks:[]};
 	
 
 	//unused
@@ -41,11 +44,16 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 
 	//Controller Methods
 	//pass routine (array of obj) to factory, to get sent to BE
+	// $scope.createRoutine = function(){
+	// 	task_factory.createRoutine($scope.routine,$scope.totalTime);
+
+	// };
 	$scope.createRoutine = function(){
-		task_factory.createRoutine($scope.routine,$scope.totalTime);
-
-	};
-
+		$scope.newRoutine._username = $cookies.get('username');
+		$scope.newRoutine.total_duration = $scope.totalTime;
+		task_factory.createRoutine($scope.newRoutine);
+	}
+	
 	$scope.addAllTask = function(){
 		task_factory.addAllTask($scope.routine,function(){task_factory.createRoutine($scope.routine,$scope.totalTime)});
 	};
@@ -118,6 +126,9 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
             //push new task to array to update printed list
             $scope.routine.push(JSON.parse(sessionStorage[session_task_name]));
             calculateTotalDuration(timeConvert);
+            $scope.newRoutine.tasks.push($scope.task);
+            $scope.newRoutine.tasks[$scope.newRoutine.tasks.length-1].order = $scope.newRoutine.tasks.length-1;
+            console.log($scope.newRoutine);
             $scope.task={};
             
             $scope.$apply();
@@ -139,6 +150,7 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	var get_session_task = function(){
 		for(task in sessionStorage){
 			$scope.routine.push(JSON.parse(sessionStorage[task]));
+			$scope.newRoutine.tasks.push(JSON.parse(sessionStorage[task]));
 		}
 	}
 	
@@ -155,8 +167,10 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
         if(!sessionStorage[session_task_name]){
             //if first item in list then use home as origin location
             if(sessionStorage[session_task_name] == sessionStorage[Object.keys(sessionStorage)[0]]){
+            	$scope.task.order = 0;
                 getNewDistance(testHome, $scope.task.task_location);
             }else{
+            	$scope.task.order  = JSON.parse(sessionStorage[Object.keys(sessionStorage)[size - 1]]).order+1;
                 getNewDistance(JSON.parse(sessionStorage[Object.keys(sessionStorage)[size - 1]]).task_location, $scope.task.task_location);
             }
         } else {
@@ -215,12 +229,12 @@ TCommander.controller('task_controller',['$scope', 'task_factory',function($scop
 	//initial run of loop to pull up current task
 	get_session_task();
 	calculateTotalDuration(timeConvert);
+	console.log($cookies.getAll())
 }]);
 
 //Users Controller
-TCommander.controller('users_controller',['$scope', 'users_factory', function ($scope, users_factory){
+TCommander.controller('users_controller',['$cookies','$scope', 'users_factory', function ($cookies, $scope, users_factory){
 	$scope.user={};
-
 
 	//password confirmation match check:
 	$scope.passMatch = function(){
@@ -232,7 +246,13 @@ TCommander.controller('users_controller',['$scope', 'users_factory', function ($
 	}
 
 	$scope.loginUser = function(){
-		users_factory.loginUser($scope.user);
+		users_factory.loginUser($scope.user,function(user){
+			$cookies.remove('username');
+			$cookies.remove('first_name');
+			$cookies.put('username',user.username);
+			$cookies.put('first_name',user.first_name);
+			console.log($cookies.get('username'));
+		});
 	}
 
 }]);

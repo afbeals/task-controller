@@ -22,20 +22,25 @@
 
 <div id="printContent">
 	<ul>
-		<li ng-repeat="task in routine">
-			{{task.task_name}},{{task.task_length}}
+		<li ng-repeat="task in newRoutine.tasks | orderBy: 'order'">
+			{{task.task_name}},{{task.task_length}},wtf: {{task.order}}
 			<button ng-click="removeTask(task.task_name)">Remove Task</button>
 		</li>
 	</ul>
 </div>
 <br />
 
-<div ng-show="routine.length">
+<div ng-show="newRoutine.tasks.length">
+<label>Save your routine above?<label>
 	<ng-form name="save_routine_form">
-		<label for="save_Routine">
-			Save your routine above?
-			<button ng-click="createRoutine()" >Create my routine!</button>
-		<label>
+		
+		<br>
+		<label for="routine_name">
+			Routine Name:<input type="text" name="routine_name" ng-model="newRoutine.routine_name" required>
+			<!-- <div ng-messages="task_form.task_location.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_location.$touched"></div> -->
+			<!-- <p ng-show="task_form.task_location.$invalid && !task_form.task_location.$pristine && task_form.task_location.$touched">Task Location is required.</p> -->
+		</label> 
+		<button ng-click="createRoutine()" >Create my routine!</button>
 	</ng-form>
 </div>
 

@@ -8,19 +8,18 @@ module.exports = function(app)
 		routines.addToRoutine(req,res);
 	}),
 	app.post('/createRoutine', function(req,res){
-		routines.createRoutine(req.body);
-		res.sendStatus(200);
+		routines.createRoutine(req,res);
 	}),
 	app.post('/addAllTask', function(req,res){
-		tasks.addAllTask(req.body);
-		console.log("routes req: ",req.body);
+		tasks.addAllTask(req);
+		console.log("routes req: ",req);
 		res.sendStatus(200);
 	}),
 	app.post('/registerUser',function(req,res){
-		console.log(req.body);
-		users.registerUser(req.body,res);
+		console.log(req);
+		users.registerUser(req,res);
 	}),
 	app.post('/loginUser',function(req,res){
-		users.loginUser(req.body,res);
+		users.loginUser(req,res);
 	})
 }
