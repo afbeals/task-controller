@@ -16,12 +16,7 @@ to do:
 //form validations
 //url = case insensitive
 
-bugs:
-//Create-A-Routine: 
-	-remove all task button sends error but does remove
-	-single remove task button removes but doesn't update
-	
-
+known bugs:
 
 Later features:
 //adding location drops a pin on map
