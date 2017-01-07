@@ -44,7 +44,7 @@
 	</ng-form>
 </div>
 
-<button ng-click="removeAllTask()" ng-show="routine.length > 1">Remove all task?</button>
+<button ng-click="removeAllTask()" ng-show="newRoutine.tasks.length > 1">Remove all task?</button>
 <style>
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
@@ -68,4 +68,3 @@
 </ng-form>
 
 <div>my total time is: {{totalTime}}</div>
-<button ng-click="addAllTask()">Add Task</button>

@@ -1,102 +1,84 @@
 //Front end controllers
 //Navbar Controller
 TCommander.controller('nav_controller',['$cookies','$scope', 'task_factory', function ($cookies, $scope, task_factory){
-	console.log('using nav_controller controller');
-	console.log($cookies.getAll());
 }]);
 
 //Form Controller
 TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',function($cookies, $scope, task_factory){
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
-	$scope.routine = [];
 	$scope.dynForm = {};
 	$scope.address = {};
 	$scope.totalTime = "";
-	//initialize variables
-
 	$scope.newRoutine = {tasks:[]};
 	
-
 	//unused
-	//check if routine exist in session storage, if so run callback with routine data (unused)
-	var routine_check = function(data,callback){
-		if(!sessionStorage.currentroutine){
-			sessionStorage.setItem('currentroutine', JSON.stringify(data));
-		}else if(sessionStorage.currentroutine){
-			callback(data);
+
+	//future implementation
+		//Google Maps Api info
+			//set location for pin / create map on front end in <div id="map"></div>
+			//var cities = "Atlanta, USA";
+		  	//var geocoder= new google.maps.Geocoder();
+		  
+		   	//$scope.markers = [];
+		   
+		   	// var createMarker = function (info){
+		    //     var marker = new google.maps.Marker({
+		    //         map: $scope.map,
+		    //         position: new google.maps.LatLng(info.lat(), info.lng())
+		    //     });
+		   	// }
+
+		  	// geocoder.geocode( { 'address': cities }, function(results, status) {
+		   //  	if (status == google.maps.GeocoderStatus.OK) {
+		   //      	newAddress = results[0].geometry.location;
+		   //      	$scope.map.setCenter(newAddress);
+		   //      	createMarker(newAddress)
+		  	//  	}
+		  	// });
+
+		  // $scope.mapOptions = {
+		   //      zoom: 4,
+		   //      //center: new google.maps.LatLng(41.923, 12.513),
+		   //      mapTypeId: google.maps.MapTypeId.TERRAIN
+		   //  }
+
+		    //$scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions);
+			
+	//functions
+	//loop through sessionStorage to get currently stored task and add update newRoutine from sessionStorage
+	var get_session_task = function(){
+		for(task in sessionStorage){
+			$scope.newRoutine.tasks.push(JSON.parse(sessionStorage[task]));
 		}
-	};
-	//run routine_check and pass task obj, then run factory with passed info
-	// $scope.createroutine = function(){
-	// 	routine_check($scope.task, function(data){task_factory.addTaskToroutine(data)});
-	// }
-
-
-	//demonstrators
-	//fun factories 'consoleLogStatic' method and pass it a function with info as callback, then console log the return data
-	$scope.consoleLogStatic = function(){
-		task_factory.consoleLogStatic(function(data){
-			console.log(data);
-		});
-	};
-
-
-	//Controller Methods
-	//pass routine (array of obj) to factory, to get sent to BE
-	// $scope.createRoutine = function(){
-	// 	task_factory.createRoutine($scope.routine,$scope.totalTime);
-
-	// };
-	$scope.createRoutine = function(){
-		$scope.newRoutine._username = $cookies.get('username');
-		$scope.newRoutine.total_duration = $scope.totalTime;
-		task_factory.createRoutine($scope.newRoutine);
-	}
-	
-	$scope.addAllTask = function(){
-		task_factory.addAllTask($scope.routine,function(){task_factory.createRoutine($scope.routine,$scope.totalTime)});
-	};
-
-	//clear form values
-	$scope.clearForm = function(){
-		$scope.task = {};
 	}
 
-	//API's
-	//Google Maps Api info
-	//set location for pin
-	var cities = "Atlanta, USA";
-  	var geocoder= new google.maps.Geocoder();
-  
-   	$scope.markers = [];
-   
-   	var createMarker = function (info){
-        var marker = new google.maps.Marker({
-            map: $scope.map,
-            position: new google.maps.LatLng(info.lat(), info.lng())
-        });
-   	}
-
-  	geocoder.geocode( { 'address': cities }, function(results, status) {
-    	if (status == google.maps.GeocoderStatus.OK) {
-        	newAddress = results[0].geometry.location;
-        	$scope.map.setCenter(newAddress);
-        	createMarker(newAddress)
-    	}
-  	 });
-
-  	$scope.mapOptions = {
-        zoom: 4,
-        //center: new google.maps.LatLng(41.923, 12.513),
-        mapTypeId: google.maps.MapTypeId.TERRAIN
+	//calculate distance
+	//loop  through task durations and lengths to get total routine time
+    var calculateTotalDuration = function(callback){
+    	var timeTotal = 0;
+    	for(var duration in $scope.newRoutine.tasks){
+    		//get all duration from task in seconds add to total time
+    		timeTotal+=$scope.newRoutine.tasks[duration].task_duration;
+    		//convert each task length to seconds add to total time
+    		timeTotal+=($scope.newRoutine.tasks[duration].task_length * 60);
+		}
+		//pass total time to callback
+		callback(timeTotal);
     }
 
-    $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions);
+    //convert time to string
+	var timeConvert = function(time){
+		time = Number(time);
+		var h = Math.floor(time / 3600);
+		var m = Math.floor(time % 3600 / 60);
+		var s = Math.floor(time % 3600 % 60);
+		$scope.totalTime = ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
+	}
 
     //Google Distance Matrix info
-	//create scope function pass form data to function for destination calculation
-	getNewDistance = function(origina,destination1){
+	//create scope function pass form data to function for destination calculation run callback for res info
+	var getNewDistance = function(origina,destination1){
 		var service = new google.maps.DistanceMatrixService();
 		service.getDistanceMatrix(
 		{
@@ -111,26 +93,26 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
 		}, distanceMatrixResponse);
 	}
 
-    //distance matrix response function
+	//distance matrix response function
     var distanceMatrixResponse = function(response,status){
         if (status == 'OK') {
             var origins = response.originAddresses;
             var destinations = response.destinationAddresses;
             var task_name = $scope.task.task_name;
             var session_task_name = "task:"+task_name;
-            console.log(response);
-            //add task duration to task (get ready to submit to database)
+            //add task duration to task for total time calculation
             $scope.task.task_duration=Math.floor(response.rows[0].elements[0].duration.value);
             //set each task by 'task: "task_name"' with object information
             sessionStorage.setItem(session_task_name,JSON.stringify($scope.task));
-            //push new task to array to update printed list
-            $scope.routine.push(JSON.parse(sessionStorage[session_task_name]));
-            calculateTotalDuration(timeConvert);
+            //push new task to newRoutine task array to update printed list
             $scope.newRoutine.tasks.push($scope.task);
+            //add order value to last newly added task
             $scope.newRoutine.tasks[$scope.newRoutine.tasks.length-1].order = $scope.newRoutine.tasks.length-1;
-            console.log($scope.newRoutine);
+            //run function to sum all time and then pass to timeConvert to change format
+            calculateTotalDuration(timeConvert);
+            //clear task for next insert
             $scope.task={};
-            
+            //apply all changes
             $scope.$apply();
             // for (var i = 0; i < origins.length; i++) {
             //   var results = response.rows[i].elements;
@@ -145,18 +127,23 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
         }
     }
 
-	//sessionStorage 
-	//loop through sessionStorage to get currently stored task
-	var get_session_task = function(){
-		for(task in sessionStorage){
-			$scope.routine.push(JSON.parse(sessionStorage[task]));
-			$scope.newRoutine.tasks.push(JSON.parse(sessionStorage[task]));
-		}
-	}
-	
+
+//testing variable chang to $cookies.home info recived from server session
 	var testHome = "Portland, OR";
 
-    //scope task method
+	//Controller Scope Methods
+	//add username and total duration to newRoutine to pass to factory.
+	$scope.createRoutine = function(){
+		$scope.newRoutine._username = $cookies.get('username');
+		$scope.newRoutine.total_duration = $scope.totalTime;
+		task_factory.createRoutine($scope.newRoutine);
+	}
+	
+	//clear form values
+	$scope.clearForm = function(){
+		$scope.task = {};
+	}
+
     $scope.addTaskToSesRoutine = function(){
         //grab task_name as identifier
         var task_name = $scope.task.task_name;
@@ -168,9 +155,11 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
             //if first item in list then use home as origin location
             if(sessionStorage[session_task_name] == sessionStorage[Object.keys(sessionStorage)[0]]){
             	$scope.task.order = 0;
-                getNewDistance(testHome, $scope.task.task_location);
+            	getNewDistance(testHome, $scope.task.task_location);           
             }else{
+            	//set order to last in list of objects
             	$scope.task.order  = JSON.parse(sessionStorage[Object.keys(sessionStorage)[size - 1]]).order+1;
+                //pass previous location as origin for duration calculation
                 getNewDistance(JSON.parse(sessionStorage[Object.keys(sessionStorage)[size - 1]]).task_location, $scope.task.task_location);
             }
         } else {
@@ -179,31 +168,17 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
         
     };
 
-    //calculate distance
-    var calculateTotalDuration = function(callback){
-    	var timeTotal = 0;
-    	for(var duration in $scope.routine){
-    		timeTotal+=$scope.routine[duration].task_duration;
-    		timeTotal+=($scope.routine[duration].task_length * 60);
-		}
-		callback(timeTotal);
-    }
-	function timeConvert (time){
-		time = Number(time);
-		var h = Math.floor(time / 3600);
-		var m = Math.floor(time % 3600 / 60);
-		var s = Math.floor(time % 3600 % 60);
-		$scope.totalTime = ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
-	}
+    
 	//remove task from routine list
 	//take in unique name of task
 	$scope.removeTask = function(name){
 		if(sessionStorage.getItem("task:"+name)){
+			//search through tasks array for object matching name to get index
+			var elementPosition = $scope.newRoutine.tasks.map(function(x) {return x.task_name; }).indexOf(name);
 			//remove from sessionStorage
-			var elementPosition = $scope.routine.map(function(x) {return x.task_name; }).indexOf(name);
 			sessionStorage.removeItem("task:"+name);
-			//and remove from array to update front end
-			$scope.routine.splice(elementPosition, 1);
+			//remove from array
+			$scope.newRoutine.tasks.splice(elementPosition, 1);
 			calculateTotalDuration(timeConvert);
 		}else{
 			alert('hmm something went wrong, please reload the page and try again.')
@@ -211,25 +186,18 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
 	};
 	//remove all task from routine
 	$scope.removeAllTask = function(){
-		if($scope.routine.length > 1){
+		if($scope.newRoutine.tasks.length > 1){
 			if (confirm('Are you sure you want to clear your task?')){
 			    sessionStorage.clear();
-			    $scope.routine=[];
-			    $scope.timeTotal="";
-			    $scope.$apply();
+			    $scope.newRoutine.tasks=[];
+			    $scope.totalTime="";
 			}
-		}else{
-			sessionStorage.clear();
-			$scope.routine=[];
-			$scope.timeTotal="";
-			$scope.$apply();
 		}
 	}
-	//run initial functions for SPA
-	//initial run of loop to pull up current task
+
+	//Starter functions on load of controller
 	get_session_task();
 	calculateTotalDuration(timeConvert);
-	console.log($cookies.getAll())
 }]);
 
 //Users Controller

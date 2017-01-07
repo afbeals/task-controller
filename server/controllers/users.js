@@ -6,7 +6,6 @@ var User = mongoose.model('User');
 module.exports =
 {
 	registerUser : function(req,res){
-		console.log(req);
 	    if(req.body.password === req.body.password_confirmation && req.body.email === req.body.email_confirmation){
 	      var user = new User({	first_name: req.body.first_name, 
 	      						last_name: req.body.last_name, 
@@ -24,7 +23,6 @@ module.exports =
 	      })
 	    }else{
 	      res.sendStatus(400);
-	      console.log("mi eror")
 		}
 	},
 
@@ -33,15 +31,13 @@ module.exports =
 			if(err){
 				console.log(err);
 			}else if(!user){
-				console.log("failed login");
+				console.log("failed login, user not found");
+				res.sendStatus(400);
 			}else{
-				console.log("found user");
+				console.log("found user: ",req.body.username);
 				req.session.username = user.username;
 				req.session.first_name = user.first_name;
 				res.json(user);
-
-				// res.sendStatus(200)
-				// res.end();
 			}
 		})
 	}
