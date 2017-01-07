@@ -16,7 +16,6 @@ module.exports = function(app)
 		res.sendStatus(200);
 	}),
 	app.post('/registerUser',function(req,res){
-		console.log(req);
 		users.registerUser(req,res);
 	}),
 	app.post('/loginUser',function(req,res){

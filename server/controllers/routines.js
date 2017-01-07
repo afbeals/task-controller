@@ -43,41 +43,37 @@ module.exports =
 								if(err){
 									console.log('user save err: ',err);
 								}else{
-									//var tasksIds = [];
+									var tasksIds = [];
 									for(var x = 0;x<req.body.tasks.length;++x){
 										var task = new Task({
 																task_name: req.body.tasks[x].task_name,
 																task_length:req.body.tasks[x].task_length,
 																task_location:req.body.tasks[x].task_location,
 																order:req.body.tasks[x].order,
-																_username:user._id
+																_username:user._id,
+																_routine:routine._id
 															});
-										task._routine.push(routine._id);
+										routine._task.push(task._id);
+										user._task.push(task._id);
+										tasksIds.push(task._id);
+										console.log(tasksIds);
 										task.save(function(err,task){
 											if(err){
 												console.log("task save err: ",err);
-											}else{
-												//tasksIds.push(task.id);
-//routine update not pushing in task id's, maybe use 'task._routine.push() method'
-												routine._task.push(task._id);
-												routine.save(function(err,routine){
-												//routine.update({_id:routine._id}, {$push:{_task:task._id}}, function(err){
-													if(err){
-														console.log("routine update err: ",err);
-													}else{
-// user update not pushing task in to db				
-														user._routine.push(task._id);
-														user.save(function(err,user){
-														//user.update({_id:user._id}, {$push:{_task:task._id}}, function(err){
-															if(err){
-																console.log('user update err: ', err);
-															}
-														});
-													}
-												})
 											}
 										})
 									}
+									routine.save(function(err,routine){
+										if(err){
+											console.log("routine update err: ",err);
+										}else{				
+											user.save(function(err,user){
+												if(err){
+													console.log('user update err: ', err);
+												}
+											});
+										}
+									})																						
 								}
 							})
 						}
@@ -87,7 +83,24 @@ module.exports =
 		})
 		console.log('please done');
 		res.sendStatus(200);
-
+//move into for x for loop inside task.save else statment
+// //routine update not pushing in task id's, maybe use 'task._routine.push() method'
+// 												routine._task.push(task._id);
+// 												routine.save(function(err,routine){
+// 												//routine.update({_id:routine._id}, {$push:{_task:task._id}}, function(err){
+// 													if(err){
+// 														console.log("routine update err: ",err);
+// 													}else{
+// // user update not pushing task in to db				
+// 														user._routine.push(task._id);
+// 														user.save(function(err,user){
+// 														user.update({_id:user._id}, {$push:{_task:task._id}}, function(err){
+// 															if(err){
+// 																console.log('user update err: ', err);
+// 															}
+// 														});
+// 													}
+// 												})
 
 
 		// var ids = []; 
