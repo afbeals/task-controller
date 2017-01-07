@@ -21,4 +21,5 @@ known bugs:
 Later features:
 //adding location drops a pin on map
 //drag and drop task to reorder (updates order # in list)
-//update routine instead of having to create new one based 
+//update routine instead of having to create new one based
+//add in depart at and/or arrive by feature for routine start time
