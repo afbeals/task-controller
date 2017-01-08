@@ -1,6 +1,6 @@
 //Front End Factories
 //Tasks Factory
-TCommander.factory('task_factory', function($http, $location) 
+TCommander.factory('routines_factory', function($http, $location) 
 {
 	//initialize factory obj.
 	var factory = {};
@@ -24,6 +24,21 @@ TCommander.factory('task_factory', function($http, $location)
 			console.log("factory.createRoutine error received");
 		});
 	};
+
+	factory.getAllRoutines = function(callback){
+		console.log('param: ',routine_name);
+		//$http.get('/routine/'+routine_name)
+	}
+
+	factory.getRoutine = function(routine_name,callback){
+		console.log(routine_name);
+		$http.get('/getRoutine/'+routine_name).success(function(data){
+			callback(data);
+		}).error(function(){
+			console.log("factory getRoutine retrieval err");
+		})
+
+	}
 
 	//return object methods
 	return factory;
@@ -56,3 +71,4 @@ TCommander.factory('users_factory', function($http, $location) {
 	//return object methods
 	return factory;
 });
+

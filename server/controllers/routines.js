@@ -94,5 +94,17 @@ module.exports =
 				}
 			}
 		})
+	},
+
+	getRoutine : function(req,res){
+		Routine.findOne({routine_name: req.params.routine_name},function(err,routine){
+			if(err){
+				console.log("Routine getRoutine err: ", err);
+				res.sendStatus(400);
+				res.end();
+			}else{
+				res.json(routine);
+			}
+		});
 	}
 }

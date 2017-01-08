@@ -1,17 +1,19 @@
 //Front end controllers
 //Navbar Controller
-TCommander.controller('nav_controller',['$cookies','$scope', 'task_factory', function ($cookies, $scope, task_factory){
+TCommander.controller('nav_controller',['$cookies','$scope', 'users_factory', function ($cookies, $scope, routines_factory){
 }]);
 
 //Form Controller
-TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',function($cookies, $scope, task_factory){
+TCommander.controller('routines_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
+	$scope.routine=[];
 	$scope.dynForm = {};
 	$scope.address = {};
 	$scope.totalTime = "";
 	$scope.newRoutine = {tasks:[]};
-	
+	$scope.param = $routeParams.routine_name;
+
 	//unused
 
 	//future implementation
@@ -136,7 +138,7 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
 	$scope.createRoutine = function(){
 		$scope.newRoutine._username = $cookies.get('username');
 		$scope.newRoutine.total_duration = $scope.totalTime;
-		task_factory.createRoutine($scope.newRoutine);
+		routines_factory.createRoutine($scope.newRoutine);
 	}
 	
 	//clear form values
@@ -195,6 +197,13 @@ TCommander.controller('task_controller',['$cookies','$scope', 'task_factory',fun
 		}
 	}
 
+	//retrieve all routines
+	$scope.getAllRoutines = function(){
+		routines_factory.getAllRoutines(function(routine){
+			$scope.routine = routine;
+		})
+	}
+
 	//Starter functions on load of controller
 	get_session_task();
 	calculateTotalDuration(timeConvert);
@@ -223,4 +232,19 @@ TCommander.controller('users_controller',['$cookies','$scope', 'users_factory', 
 		});
 	}
 
+}]);
+
+TCommander.controller('single_routine_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
+	$scope.routine={};
+	$scope.param = $routeParams.routine_name;
+
+	//retrieve single routine
+	var getRoutine = function(){
+		routines_factory.getRoutine($scope.param,function(routine){
+			$scope.routine = routine;
+		})
+	}
+
+	//Starter functions on load of controller
+	getRoutine();
 }]);
