@@ -1,11 +1,19 @@
+<ng-form name="prefill_routine_form" novalidate>
+	<label for="previous_task">
+		<select name="previous_task" ng-options="task as task.task_name for task in routine._task" ng-change="addPreviousTask(selected.task_name)" ng-model="selected">
+		</select>
+	</label>
+</ng-form>
+<br>
+<br>
 <ng-form name="task_form" novalidate>
 	<label for="task_name">
 		Task Name:<input type="text" name="task_name" ng-model="task.task_name" ng-minlength="3" ng-maxlength="25" required>
 		<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
-		<p ng-show="task_form.task_name.$invalid && !task_form.task_name.$pristine && task_form.task_name.$touched">Task name is required.</p>
+		<p ng-show="presentInDatabase(task.task_name) || task_form.task_name.$invalid && !task_form.task_name.$pristine && task_form.task_name.$touched">Task name is required and must be unique.</p>
 	</label>
 	<label for="task_length">
-		Time Consumptionj(min):<input type="number" name="task_length" ng-model="task.task_length" min="0" max="1440" required>
+		Time Consumption(min):<input type="number" name="task_length" ng-model="task.task_length" min="0" max="1440" required>
 		<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
 		<p ng-show="task_form.task_length.$invalid && !task_form.task_length.$pristine && task_form.task_length.$touched">Task Consumption is required.</p>
 	</label>
@@ -14,7 +22,7 @@
 		<!-- <div ng-messages="task_form.task_location.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_location.$touched"></div> -->
 		<p ng-show="task_form.task_location.$invalid && !task_form.task_location.$pristine && task_form.task_location.$touched">Task Location is required.</p>
 	</label> 
-	<button ng-click="addTaskToSesRoutine(); task_form.$setPristine();task_form.$setUntouched()" ng-disabled="task_form.$pristine || !task_form.$dirty || task_form.$invalid" type="submit">Create!</button>
+	<button ng-click="addTaskToSesRoutine(); task_form.$setPristine();task_form.$setUntouched()" ng-disabled="task_form.$pristine || !task_form.$dirty || task_form.$invalid || presentInDatabase(task.task_name)" type="submit">Create!</button>
 	<button ng-click="task_form.$setPristine();task_form.$setUntouched();clearForm()" type="submit">Clear</button>
 
 

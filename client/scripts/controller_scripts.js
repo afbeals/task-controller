@@ -7,7 +7,7 @@ TCommander.controller('nav_controller',['$cookies','$scope', 'users_factory', fu
 TCommander.controller('routines_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
-	$scope.routine=[];
+	$scope.routine={};
 	$scope.dynForm = {};
 	$scope.address = {};
 	$scope.totalTime = "";
@@ -78,6 +78,14 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 		$scope.totalTime = ((h > 0 ? h + ":" + (m < 10 ? "0" : "") : "") + m + ":" + (s < 10 ? "0" : "") + s); 
 	}
 
+	//retrieve all routines
+	var getAllRoutines = function(){
+		routines_factory.getAllRoutines(function(routine){
+			$scope.routine = routine;
+			console.log(routine);
+		})
+	}
+
     //Google Distance Matrix info
 	//create scope function pass form data to function for destination calculation run callback for res info
 	var getNewDistance = function(origina,destination1){
@@ -129,10 +137,6 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
         }
     }
 
-
-//testing variable chang to $cookies.home info recived from server session
-	var testHome = "Portland, OR";
-
 	//Controller Scope Methods
 	//add username and total duration to newRoutine to pass to factory.
 	$scope.createRoutine = function(){
@@ -157,7 +161,7 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
             //if first item in list then use home as origin location
             if(sessionStorage[session_task_name] == sessionStorage[Object.keys(sessionStorage)[0]]){
             	$scope.task.order = 0;
-            	getNewDistance(testHome, $scope.task.task_location);           
+            	getNewDistance($cookies.get('home'), $scope.task.task_location);           
             }else{
             	//set order to last in list of objects
             	$scope.task.order  = JSON.parse(sessionStorage[Object.keys(sessionStorage)[size - 1]]).order+1;
@@ -197,14 +201,30 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 		}
 	}
 
-	//retrieve all routines
-	$scope.getAllRoutines = function(){
-		routines_factory.getAllRoutines(function(routine){
-			$scope.routine = routine;
-		})
+	//add previous task to newRoutine
+	$scope.addPreviousTask = function(task_name){
+		for(var task in $scope.routine._task){
+			if($scope.routine._task[task].task_name == task_name){
+				$scope.task.task_name = $scope.routine._task[task].task_name
+				$scope.task.task_length = $scope.routine._task[task].task_length
+				$scope.task.task_location = $scope.routine._task[task].task_location
+			}
+		}
+	}
+
+	//check if present in routine
+	$scope.presentInDatabase = function(task_name){
+		var present = false;
+		for (var task in $scope.routine._task){
+			if($scope.routine._task[task].task_name == task_name){
+				present = true;
+			}
+		}
+		return present;
 	}
 
 	//Starter functions on load of controller
+	getAllRoutines();
 	get_session_task();
 	calculateTotalDuration(timeConvert);
 }]);
@@ -226,9 +246,10 @@ TCommander.controller('users_controller',['$cookies','$scope', 'users_factory', 
 		users_factory.loginUser($scope.user,function(user){
 			$cookies.remove('username');
 			$cookies.remove('first_name');
+			$cookies.remove('home');
 			$cookies.put('username',user.username);
 			$cookies.put('first_name',user.first_name);
-			console.log($cookies.get('username'));
+			$cookies.put('home',user.home);
 		});
 	}
 

@@ -11,8 +11,8 @@ var taskSchema = new Schema(
 	task_length: {type:Number, required: true, validation: validation.durationValidator},
 	task_location: {type: String, required: true, validation: validation.locationValidator},
 	order: {type: Number, required: true},
-	_username:{type: Schema.Types.ObjectId, ref: 'user'},
-	_routine: [{type: Schema.Types.ObjectId, ref: 'routine'}],
+	_username:{type: Schema.Types.ObjectId, ref: 'User'},
+	_routine: [{type: Schema.Types.ObjectId, ref: 'Routine'}],
 	created_at: {type: Date, default: new Date}
 })
 // create model

@@ -99,12 +99,19 @@ module.exports =
 	getRoutine : function(req,res){
 		Routine.findOne({routine_name: req.params.routine_name},function(err,routine){
 			if(err){
-				console.log("Routine getRoutine err: ", err);
+				console.log("Routines getRoutine err: ", err);
 				res.sendStatus(400);
 				res.end();
 			}else{
 				res.json(routine);
 			}
+		});
+	},
+
+	getAllRoutines : function(req,res){
+		User.findOne({username: req.session.username}).populate('_routine _task').exec(function(err,routine) {
+			if(err)return handleError(err);
+		  	res.json(routine);
 		});
 	}
 }

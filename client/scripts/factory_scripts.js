@@ -26,8 +26,12 @@ TCommander.factory('routines_factory', function($http, $location)
 	};
 
 	factory.getAllRoutines = function(callback){
-		console.log('param: ',routine_name);
-		//$http.get('/routine/'+routine_name)
+		$http.get('/getAllRoutines').success(function(data){
+			callback(data);
+		}).error(function(){
+			console.log("factory getAllRoutines retrieval err");
+			alert("Hmm that wasn't supposed to happen...");
+		})
 	}
 
 	factory.getRoutine = function(routine_name,callback){
@@ -37,7 +41,6 @@ TCommander.factory('routines_factory', function($http, $location)
 		}).error(function(){
 			console.log("factory getRoutine retrieval err");
 		})
-
 	}
 
 	//return object methods
@@ -59,8 +62,6 @@ TCommander.factory('users_factory', function($http, $location) {
 
 	factory.loginUser = function(user,callback){
 		$http.post('/loginUser',user).success(function(data){
-			console.log('user'+ user.username + ' sucessfully added');
-			console.log(data);
 			$location.path("Create-A-Routine");
 			callback(data);
 		}).error(function(){

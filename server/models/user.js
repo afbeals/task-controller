@@ -13,8 +13,8 @@ var userSchema = new Schema(
 	username: {type: String, required: true, validation: validation.usernameValidator, unique: true},
 	home: {type: String, required: true, validation: validation.homeValidator},
 	password: {type: String, required: true, minlength: 5, maxlength: 25},
-	_routine: [{type: Schema.Types.ObjectId, ref: 'routine'}],
-	_task: [{type: Schema.Types.ObjectId, ref: 'task'}],
+	_routine: [{type: Schema.Types.ObjectId, ref: 'Routine'}],
+	_task: [{type: Schema.Types.ObjectId, ref: 'Task'}],
 	created_at: {type: Date, default: new Date},
 
 })

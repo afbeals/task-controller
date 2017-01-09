@@ -1,18 +1,12 @@
 to do:
-//create navbar
+//Navbar:
+	-create
+	-style
+	-add logout/destroy session/cookies
 //registration = login and redirect
 //all styling
-//home location = user home
-//retriving routine updates the total duration of routine
-//Profile:
-	-retrieve routine + Task
-//Create-A-Routine:
-	-retrieve all previous Task for easy add to new routine
-//add login check to all function
-//clean up & remove script
-//comment out code
-//create logout to destroy session / cookie / sessionStorage
-//change over to using newRoutine
+//retriving routine updates the total duration of routine (after styling out full routine view)
+//create logout to destroy session / cookie / sessionStorage ()
 //form validations
 //url = case insensitive
 

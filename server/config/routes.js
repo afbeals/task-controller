@@ -15,5 +15,8 @@ module.exports = function(app)
 	}),
 	app.get('/getRoutine/:routine_name', function(req,res){
 		routines.getRoutine(req,res);
-	})
+	}),
+	app.get('/getAllRoutines',function(req,res){{
+		routines.getAllRoutines(req,res);
+	}})
 }
