@@ -4,7 +4,9 @@
   "description": "SPA to manage daily task",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build-css": "node-sass --include-path scss client/scss/TCommander_style.scss client/css/TCommander_style.css",
+    "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "express-session": "^1.14.2",
     "google-distance": "^1.0.1",
     "mongoose": "^4.7.0",
-    "mongoose-validator": "^1.2.5"
+    "mongoose-validator": "^1.2.5",
+    "node-sass": "^4.2.0"
   }
 }
