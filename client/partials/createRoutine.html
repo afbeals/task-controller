@@ -1,6 +1,7 @@
 <div class="createRoutine">
 	<div id="sideTab" >
 		<ng-form name="prefill_routine_form" novalidate class="prefillOptions">
+			<p>Previous Task:</p>
 			<div id="closeTab"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
 			<label for="previous_task">
 				<select name="previous_task" ng-options="task as task.task_name for task in routine._task" ng-change="addPreviousTask(selected.task_name)" ng-model="selected">
@@ -8,8 +9,9 @@
 			</label>
 		</ng-form>	
 	</div>
-	<div id="openSide" tcsidetab>Use previous Task</div>
+	<div id="openSide" tcsidetab><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Use previous Task</div>
 	<ng-form name="task_form" class="taskForm" novalidate>
+		<div id="taskFormHeader">Add in your task!</div>
 		<label for="task_name">
 			Task Name:<input type="text" name="task_name" ng-model="task.task_name" ng-minlength="3" ng-maxlength="25" required>
 			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->

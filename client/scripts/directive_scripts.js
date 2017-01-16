@@ -4,8 +4,10 @@
 TCommander.directive('tcsidetab', [function() {
 	var linker = function(scope, element, attrs){
 		$('#openSide').on('click',function(){
+			var showSize = $('#sideTab select option').length;
 		    $('.createRoutine #sideTab .prefillOptions').css('display','block');
 		    $('#sideTab').css('width','250px');
+   			$('#sideTab select').attr('size',showSize);
 		});
 		$('#closeTab').on('click',function(){
 			$('.createRoutine #sideTab .prefillOptions').css('display','none');

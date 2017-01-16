@@ -395,13 +395,34 @@ table {
     width: 0px;
     position: absolute;
     background: #000;
-    transition: all .5s;
+    transition: all .2s;
     height: 100%;
     z-index: 5; }
     .createRoutine #sideTab .prefillOptions {
       display: none; }
       .createRoutine #sideTab .prefillOptions #closeTab {
+        color: #fff;
+        float: right;
+        margin: -5px 5px;
+        cursor: pointer;
+        display: inline-block; }
+        .createRoutine #sideTab .prefillOptions #closeTab i {
+          font-size: 3em;
+          float: right;
+          margin: 5px; }
+      .createRoutine #sideTab .prefillOptions > label {
+        clear: both;
+        width: 100%; }
+      .createRoutine #sideTab .prefillOptions > p {
+        font-size: 1.8em;
+        text-align: left;
+        padding-left: 10px;
+        bottom: -9px;
+        display: inline-block;
         color: #fff; }
+      .createRoutine #sideTab .prefillOptions select {
+        width: 100%;
+        font-size: 2em; }
   .createRoutine #openSide {
     font-size: 1.5em;
     cursor: pointer;
@@ -432,6 +453,11 @@ table {
       padding: 8px;
       margin: 4px;
       border-radius: 5px; }
+    .createRoutine .taskForm #taskFormHeader {
+      text-align: center;
+      font-size: 2.5em;
+      font-weight: 700;
+      text-transform: uppercase; }
   .createRoutine #printContent {
     clear: both;
     width: 80%;
@@ -503,4 +529,5 @@ table {
 body {
   display: block;
   max-width: 1120px;
-  margin: 0 auto; }
+  margin: 0 auto;
+  font-size: 10%; }
