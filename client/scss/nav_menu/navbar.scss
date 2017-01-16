@@ -1,0 +1,25 @@
+#navbar{
+	margin-top: 5.5em;
+}
+#profileSiloutte{
+	position: absolute;
+    bottom: -16px;
+    margin: 0px 15px 4px 15px;
+    z-index:1;
+	i{
+		bottom: -12px;
+		font-size: 4em;
+	}
+	p{
+		font-size: 2em;
+    	display: inline-block;
+    	vertical-align: text-top;
+	}
+}
+#logOut{
+		position: absolute;
+	    right: 0;
+	    margin: 10px 15px;
+	    bottom: -20px;
+	    font-size: 2em;
+	}

@@ -133,6 +133,29 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+#navbar {
+  margin-top: 5.5em; }
+
+#profileSiloutte {
+  position: absolute;
+  bottom: -16px;
+  margin: 0px 15px 4px 15px;
+  z-index: 1; }
+  #profileSiloutte i {
+    bottom: -12px;
+    font-size: 4em; }
+  #profileSiloutte p {
+    font-size: 2em;
+    display: inline-block;
+    vertical-align: text-top; }
+
+#logOut {
+  position: absolute;
+  right: 0;
+  margin: 10px 15px;
+  bottom: -20px;
+  font-size: 2em; }
+
 * {
   position: relative;
   -moz-box-sizing: border-box;
@@ -141,55 +164,48 @@ table {
   padding: 0;
   list-style: none; }
 
-html,
-body {
-  height: 100%; }
-
-body {
-  background: #52be7f;
-  color: #fff; }
-
 .component {
   position: relative;
   margin-bottom: 3em;
-  height: 15em;
+  height: 6.5em;
   background: rgba(0, 0, 0, 0.05);
   font-family: 'Lato', Arial, sans-serif; }
-
-.component > h2 {
-  position: absolute;
-  overflow: hidden;
-  width: 100%;
-  text-align: center;
-  text-transform: uppercase;
-  white-space: nowrap;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 12em;
-  opacity: 0.1;
-  cursor: default; }
-
-.cn-button {
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  z-index: 11;
-  margin-top: -2.25em;
-  margin-left: -2.25em;
-  padding-top: 0em;
-  width: 4.5em;
-  height: 4.5em;
-  border: none;
-  border-radius: 50%;
-  background: none;
-  background-color: #fff;
-  color: #52be7f;
-  text-align: center;
-  font-weight: 700;
-  font-size: 1.5em;
-  text-transform: uppercase;
-  cursor: pointer;
-  -webkit-backface-visibility: hidden; }
+  .component > h2 {
+    position: absolute;
+    overflow: hidden;
+    width: 100%;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    font-weight: 300;
+    font-style: italic;
+    font-size: 12em;
+    opacity: 0.1;
+    cursor: default; }
+  .component .cn-button {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    z-index: 11;
+    margin-top: -2.25em;
+    margin-left: -2.25em;
+    padding-top: 0em;
+    width: 4.5em;
+    height: 4.5em;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    background-color: #fff;
+    color: #52be7f;
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    cursor: pointer;
+    -webkit-backface-visibility: hidden; }
+    @media only screen and (max-width: 480px) {
+      .component .cn-button {
+        font-size: 1em; } }
 
 .csstransforms .cn-wrapper {
   position: absolute;
@@ -212,22 +228,81 @@ body {
   transform: scale(0.1);
   pointer-events: none;
   overflow: hidden; }
-
-/*cover to prevent extra space of anchors from being clickable*/
-.csstransforms .cn-wrapper:after {
-  content: ".";
-  display: block;
-  font-size: 2em;
-  width: 6.2em;
-  height: 6.2em;
-  position: absolute;
-  left: 50%;
-  margin-left: -3.1em;
-  top: 50%;
-  margin-top: -3.1em;
-  border-radius: 50%;
-  z-index: 10;
-  color: transparent; }
+  .csstransforms .cn-wrapper:after {
+    content: ".";
+    display: block;
+    font-size: 2em;
+    width: 6.2em;
+    height: 6.2em;
+    position: absolute;
+    left: 50%;
+    margin-left: -3.1em;
+    top: 50%;
+    margin-top: -3.1em;
+    border-radius: 50%;
+    z-index: 10;
+    color: transparent; }
+  .csstransforms .cn-wrapper li {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    overflow: hidden;
+    margin-top: -1.3em;
+    margin-left: -9.5em;
+    width: 10em;
+    height: 10em;
+    font-size: 1.5em;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    transition: all .3s ease;
+    -webkit-transform: rotate(76deg) skew(60deg);
+    -moz-transform: rotate(76deg) skew(60deg);
+    -ms-transform: rotate(76deg) skew(60deg);
+    transform: rotate(76deg) skew(60deg);
+    -webkit-transform-origin: 100% 100%;
+    -moz-transform-origin: 100% 100%;
+    transform-origin: 94% 97%;
+    pointer-events: none; }
+    .csstransforms .cn-wrapper li a {
+      position: absolute;
+      right: -7.25em;
+      bottom: -7.25em;
+      display: block;
+      width: 14.5em;
+      height: 14.5em;
+      border-radius: 50%;
+      background: #429a67;
+      background: -webkit-radial-gradient(transparent 35%, #429a67 35%);
+      background: -moz-radial-gradient(transparent 35%, #429a67 35%);
+      background: radial-gradient(transparent 35%, #429a67 35%);
+      color: #fff;
+      text-align: center;
+      text-decoration: none;
+      font-size: 1.2em;
+      line-height: 2;
+      -webkit-transform: skew(-60deg) rotate(-75deg) scale(1);
+      -moz-transform: skew(-60deg) rotate(-75deg) scale(1);
+      -ms-transform: skew(-60deg) rotate(-75deg) scale(1);
+      transform: skew(-60deg) rotate(-75deg) scale(1);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      pointer-events: auto; }
+      .csstransforms .cn-wrapper li a span {
+        position: relative;
+        top: 1.8em;
+        display: block;
+        font-size: .5em;
+        font-weight: 700;
+        text-transform: uppercase; }
+      .csstransforms .cn-wrapper li a:hover, .csstransforms .cn-wrapper li a:active, .csstransforms .cn-wrapper li a:focus {
+        background: -webkit-radial-gradient(transparent 35%, #449e6a 35%);
+        background: -moz-radial-gradient(transparent 35%, #449e6a 35%);
+        background: radial-gradient(transparent 35%, #449e6a 35%); }
+      .csstransforms .cn-wrapper li a:focus {
+        position: fixed; }
+  @media only screen and (max-width: 480px) {
+    .csstransforms .cn-wrapper {
+      font-size: .68em; } }
 
 .csstransforms .opened-nav {
   border-radius: 50%;
@@ -240,162 +315,192 @@ body {
   -ms-transform: scale(1);
   transform: scale(1);
   pointer-events: auto; }
-
-.csstransforms .cn-wrapper li {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  overflow: hidden;
-  margin-top: -1.3em;
-  margin-left: -10em;
-  width: 10em;
-  height: 10em;
-  font-size: 1.5em;
-  -webkit-transition: all .3s ease;
-  -moz-transition: all .3s ease;
-  transition: all .3s ease;
-  -webkit-transform: rotate(76deg) skew(60deg);
-  -moz-transform: rotate(76deg) skew(60deg);
-  -ms-transform: rotate(76deg) skew(60deg);
-  transform: rotate(76deg) skew(60deg);
-  -webkit-transform-origin: 100% 100%;
-  -moz-transform-origin: 100% 100%;
-  transform-origin: 100% 100%;
-  pointer-events: none; }
-
-.csstransforms .cn-wrapper li a {
-  position: absolute;
-  right: -7.25em;
-  bottom: -7.25em;
-  display: block;
-  width: 14.5em;
-  height: 14.5em;
-  border-radius: 50%;
-  background: #429a67;
-  background: -webkit-radial-gradient(transparent 35%, #429a67 35%);
-  background: -moz-radial-gradient(transparent 35%, #429a67 35%);
-  background: radial-gradient(transparent 35%, #429a67 35%);
-  color: #fff;
-  text-align: center;
-  text-decoration: none;
-  font-size: 1.2em;
-  line-height: 2;
-  -webkit-transform: skew(-60deg) rotate(-75deg) scale(1);
-  -moz-transform: skew(-60deg) rotate(-75deg) scale(1);
-  -ms-transform: skew(-60deg) rotate(-75deg) scale(1);
-  transform: skew(-60deg) rotate(-75deg) scale(1);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  pointer-events: auto; }
-
-.csstransforms .cn-wrapper li a span {
-  position: relative;
-  top: 1.8em;
-  display: block;
-  font-size: .5em;
-  font-weight: 700;
-  text-transform: uppercase; }
-
-.csstransforms .cn-wrapper li a:hover,
-.csstransforms .cn-wrapper li a:active,
-.csstransforms .cn-wrapper li a:focus {
-  background: -webkit-radial-gradient(transparent 35%, #449e6a 35%);
-  background: -moz-radial-gradient(transparent 35%, #449e6a 35%);
-  background: radial-gradient(transparent 35%, #449e6a 35%); }
-
-.csstransforms .cn-wrapper li a:focus {
-  position: fixed;
-  /* fix the displacement bug in webkit browsers when using tab key */ }
-
-.csstransforms .opened-nav li {
-  -webkit-transition: all .3s ease .3s;
-  -moz-transition: all .3s ease .3s;
-  transition: all .3s ease .3s; }
-
-.csstransforms .opened-nav li:first-child {
-  -webkit-transform: rotate(0deg) skew(60deg);
-  -moz-transform: rotate(0deg) skew(60deg);
-  -ms-transform: rotate(0deg) skew(60deg);
-  transform: rotate(0deg) skew(60deg); }
-
-.csstransforms .opened-nav li:nth-child(2) {
-  -webkit-transform: rotate(50deg) skew(60deg);
-  -moz-transform: rotate(50deg) skew(60deg);
-  -ms-transform: rotate(50deg) skew(60deg);
-  transform: rotate(50deg) skew(60deg); }
-
-.csstransforms .opened-nav li:nth-child(3) {
-  -webkit-transform: rotate(100deg) skew(60deg);
-  -moz-transform: rotate(100deg) skew(60deg);
-  -ms-transform: rotate(100deg) skew(60deg);
-  transform: rotate(100deg) skew(60deg); }
-
-.csstransforms .opened-nav li:nth-child(4) {
-  -webkit-transform: rotate(149.5deg) skew(60deg);
-  -moz-transform: rotate(149.5deg) skew(60deg);
-  -ms-transform: rotate(149.5deg) skew(60deg);
-  transform: rotate(149.5deg) skew(60deg); }
+  .csstransforms .opened-nav li {
+    -webkit-transition: all .3s ease .3s;
+    -moz-transition: all .3s ease .3s;
+    transition: all .3s ease .3s; }
+    .csstransforms .opened-nav li:first-child {
+      -webkit-transform: rotate(0deg) skew(60deg);
+      -moz-transform: rotate(0deg) skew(60deg);
+      -ms-transform: rotate(0deg) skew(60deg);
+      transform: rotate(0deg) skew(60deg); }
+    .csstransforms .opened-nav li:nth-child(2) {
+      -webkit-transform: rotate(50deg) skew(60deg);
+      -moz-transform: rotate(50deg) skew(60deg);
+      -ms-transform: rotate(50deg) skew(60deg);
+      transform: rotate(50deg) skew(60deg); }
+    .csstransforms .opened-nav li:nth-child(3) {
+      -webkit-transform: rotate(100deg) skew(60deg);
+      -moz-transform: rotate(100deg) skew(60deg);
+      -ms-transform: rotate(100deg) skew(60deg);
+      transform: rotate(100deg) skew(60deg); }
+    .csstransforms .opened-nav li:nth-child(4) {
+      -webkit-transform: rotate(149.5deg) skew(60deg);
+      -moz-transform: rotate(149.5deg) skew(60deg);
+      -ms-transform: rotate(149.5deg) skew(60deg);
+      transform: rotate(149.5deg) skew(60deg); }
 
 .no-csstransforms .cn-wrapper {
   overflow: hidden;
   margin: 10em auto;
   padding: .5em;
   text-align: center; }
-
-.no-csstransforms .cn-wrapper ul {
-  display: inline-block; }
-
-.no-csstransforms .cn-wrapper li {
-  float: left;
-  width: 5em;
-  height: 5em;
-  background-color: #fff;
-  text-align: center;
-  font-size: 1em;
-  line-height: 5em; }
-
-.no-csstransforms .cn-wrapper li a {
-  display: block;
-  width: 100%;
-  height: 100%;
-  color: inherit;
-  text-decoration: none; }
-
-.no-csstransforms .cn-wrapper li a:hover,
-.no-csstransforms .cn-wrapper li a:active,
-.no-csstransforms .cn-wrapper li a:focus {
-  background-color: #f8f8f8; }
-
-.no-csstransforms .cn-wrapper li.active a {
-  background-color: #6F325C;
-  color: #fff; }
+  .no-csstransforms .cn-wrapper ul {
+    display: inline-block; }
+  .no-csstransforms .cn-wrapper li {
+    float: left;
+    width: 5em;
+    height: 5em;
+    background-color: #fff;
+    text-align: center;
+    font-size: 1em;
+    line-height: 5em; }
+    .no-csstransforms .cn-wrapper li a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: inherit;
+      text-decoration: none; }
+    .no-csstransforms .cn-wrapper li:hover, .no-csstransforms .cn-wrapper li:active, .no-csstransforms .cn-wrapper li:focus {
+      background-color: #f8f8f8; }
+    .no-csstransforms .cn-wrapper li .active a {
+      background-color: #6F325C;
+      color: #fff; }
+    @media only screen and (max-width: 620px) {
+      .no-csstransforms .cn-wrapper li {
+        width: 4em;
+        height: 4em;
+        line-height: 4em; } }
+    @media only screen and (max-width: 420px) {
+      .no-csstransforms .cn-wrapper li {
+        width: 100%;
+        height: 3em;
+        line-height: 3em; } }
+  @media only screen and (max-width: 500px) {
+    .no-csstransforms .cn-wrapper {
+      padding: .5em; }
+      .no-csstransforms .cn-wrapper li {
+        width: 4em;
+        height: 4em;
+        font-size: .9em;
+        line-height: 4em; } }
 
 .no-csstransforms .cn-button {
   display: none; }
 
-@media only screen and (max-width: 620px) {
-  .no-csstransforms li {
-    width: 4em;
-    height: 4em;
-    line-height: 4em; } }
+.createRoutine {
+  background: #e6e6e6;
+  top: -32px; }
+  .createRoutine #sideTab {
+    width: 0px;
+    position: absolute;
+    background: #000;
+    transition: all .5s;
+    height: 100%;
+    z-index: 5; }
+    .createRoutine #sideTab .prefillOptions {
+      display: none; }
+      .createRoutine #sideTab .prefillOptions #closeTab {
+        color: #fff; }
+  .createRoutine #openSide {
+    font-size: 1.5em;
+    cursor: pointer;
+    margin: 10px;
+    top: 6px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: inline-block; }
+  .createRoutine .taskForm {
+    display: block;
+    width: 80%;
+    margin: 0 auto; }
+    .createRoutine .taskForm label {
+      display: block;
+      max-width: 100%;
+      margin-bottom: 10px;
+      font-weight: 800;
+      font-size: 2em; }
+      .createRoutine .taskForm label input {
+        width: 54%;
+        float: right;
+        height: 30px;
+        border: 1px solid #a4a4a4;
+        border-radius: 5px; }
+    .createRoutine .taskForm button {
+      float: right;
+      font-size: 2em;
+      padding: 8px;
+      margin: 4px;
+      border-radius: 5px; }
+  .createRoutine #printContent {
+    clear: both;
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    font-size: 2em;
+    top: 15px; }
+    .createRoutine #printContent li {
+      margin: 17px 0px;
+      border-bottom: 1px solid; }
+    .createRoutine #printContent button {
+      float: right;
+      padding: 5px;
+      border-radius: 5px;
+      background: #ce3737;
+      color: #fff;
+      text-transform: uppercase;
+      border: 1px solid #b0aaaa;
+      box-shadow: 4px 5px 5px #5f5e5e;
+      bottom: 15px; }
+  .createRoutine #removeAllTask {
+    width: 80%;
+    margin: 0 auto;
+    clear: both;
+    margin: 0 auto;
+    font-size: 2em; }
+    .createRoutine #removeAllTask button {
+      float: right;
+      padding: 5px;
+      border-radius: 5px;
+      background: red;
+      color: #fff;
+      text-transform: uppercase;
+      border: 1px solid #b0aaaa;
+      box-shadow: 4px 5px 5px #5f5e5e; }
+  .createRoutine #routineCreationForm {
+    width: 80%;
+    margin: 0 auto;
+    display: block;
+    clear: both;
+    font-size: 2em; }
+    .createRoutine #routineCreationForm > p {
+      display: inline-block; }
+    .createRoutine #routineCreationForm button {
+      float: right; }
+  .createRoutine #totalTime {
+    display: block;
+    right: -1px;
+    position: relative;
+    text-align: center;
+    width: 80%;
+    margin: 0 auto;
+    font-size: 2em;
+    clear: both;
+    text-transform: uppercase; }
+    .createRoutine #totalTime span {
+      color: #2c992f; }
+  .createRoutine #mapWrapper {
+    position: relative;
+    margin: 0 auto;
+    display: block;
+    padding-bottom: 56.6%;
+    padding-left: 10px; }
+    .createRoutine #mapWrapper #map {
+      position: absolute;
+      width: 98%;
+      height: 98%; }
 
-@media only screen and (max-width: 500px) {
-  .no-ccstransforms .cn-wrapper {
-    padding: .5em; }
-  .no-csstransforms .cn-wrapper li {
-    width: 4em;
-    height: 4em;
-    font-size: .9em;
-    line-height: 4em; } }
-
-@media only screen and (max-width: 480px) {
-  .csstransforms .cn-wrapper {
-    font-size: .68em; }
-  .cn-button {
-    font-size: 1em; } }
-
-@media only screen and (max-width: 420px) {
-  .no-csstransforms .cn-wrapper li {
-    width: 100%;
-    height: 3em;
-    line-height: 3em; } }
+body {
+  display: block;
+  max-width: 1120px;
+  margin: 0 auto; }
