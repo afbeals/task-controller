@@ -9,6 +9,7 @@ to do:
 //create logout to destroy session / cookie / sessionStorage ()
 //form validations
 //url = case insensitive
+//adjust $scope.presentInDatabase in FE controller_scripts.js
 
 known bugs:
 

@@ -17,35 +17,6 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	//unused
 
 	//future implementation
-		//Google Maps Api info
-			//set location for pin / create map on front end in <div id="map"></div>
-			//var cities = "Atlanta, USA";
-		  	//var geocoder= new google.maps.Geocoder();
-		  
-		   	//$scope.markers = [];
-		   
-		   	// var createMarker = function (info){
-		    //     var marker = new google.maps.Marker({
-		    //         map: $scope.map,
-		    //         position: new google.maps.LatLng(info.lat(), info.lng())
-		    //     });
-		   	// }
-
-		  	// geocoder.geocode( { 'address': cities }, function(results, status) {
-		   //  	if (status == google.maps.GeocoderStatus.OK) {
-		   //      	newAddress = results[0].geometry.location;
-		   //      	$scope.map.setCenter(newAddress);
-		   //      	createMarker(newAddress)
-		  	//  	}
-		  	// });
-
-		  // $scope.mapOptions = {
-		   //      zoom: 4,
-		   //      //center: new google.maps.LatLng(41.923, 12.513),
-		   //      mapTypeId: google.maps.MapTypeId.TERRAIN
-		   //  }
-
-		    //$scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions);
 			
 	//functions
 	//loop through sessionStorage to get currently stored task and add update newRoutine from sessionStorage
@@ -87,6 +58,37 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	}
 
     //Google Distance Matrix info
+
+    //Google Maps Api info
+	//set location for pin / create map on front end in <div id="map"></div>
+	var cities = "Atlanta, USA";
+  	var geocoder= new google.maps.Geocoder();
+  
+   	$scope.markers = [];
+   
+   	var createMarker = function (info){
+        var marker = new google.maps.Marker({
+            map: $scope.map,
+            position: new google.maps.LatLng(info.lat(), info.lng())
+        });
+   	}
+
+  	geocoder.geocode( { 'address': cities }, function(results, status) {
+    	if (status == google.maps.GeocoderStatus.OK) {
+        	newAddress = results[0].geometry.location;
+        	$scope.map.setCenter(newAddress);
+        	createMarker(newAddress)
+  	 	}
+  	});
+
+  $scope.mapOptions = {
+        zoom: 4,
+        //center: new google.maps.LatLng(41.923, 12.513),
+        mapTypeId: google.maps.MapTypeId.TERRAIN
+    }
+
+    $scope.map = new google.maps.Map(document.getElementById('map'), $scope.mapOptions);
+
 	//create scope function pass form data to function for destination calculation run callback for res info
 	var getNewDistance = function(origina,destination1){
 		var service = new google.maps.DistanceMatrixService();
