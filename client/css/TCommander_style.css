@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Archivo+Narrow:400i|Chau+Philomene+One:400i|Chivo:400i|Fira+Sans+Extra+Condensed|Lato:700i|Nunito|Open+Sans+Condensed:300|Roboto");
 article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
   display: block; }
 
@@ -134,7 +135,8 @@ table {
   border-spacing: 0; }
 
 #navbar {
-  margin-top: 5.5em; }
+  margin-top: 5.5em;
+  font-family: "Fira Sans Extra Condensed", sans-serif; }
 
 #profileSiloutte {
   position: absolute;
@@ -196,7 +198,7 @@ table {
     border-radius: 50%;
     background: none;
     background-color: #fff;
-    color: #52be7f;
+    color: #337ab7;
     text-align: center;
     font-weight: 700;
     font-size: 1.5em;
@@ -271,10 +273,10 @@ table {
       width: 14.5em;
       height: 14.5em;
       border-radius: 50%;
-      background: #429a67;
-      background: -webkit-radial-gradient(transparent 35%, #429a67 35%);
-      background: -moz-radial-gradient(transparent 35%, #429a67 35%);
-      background: radial-gradient(transparent 35%, #429a67 35%);
+      background: #337ab7;
+      background: -webkit-radial-gradient(transparent 35%, #337ab7 35%);
+      background: -moz-radial-gradient(transparent 35%, #337ab7 35%);
+      background: radial-gradient(transparent 35%, #337ab7 35%);
       color: #fff;
       text-align: center;
       text-decoration: none;
@@ -295,9 +297,9 @@ table {
         font-weight: 700;
         text-transform: uppercase; }
       .csstransforms .cn-wrapper li a:hover, .csstransforms .cn-wrapper li a:active, .csstransforms .cn-wrapper li a:focus {
-        background: -webkit-radial-gradient(transparent 35%, #449e6a 35%);
-        background: -moz-radial-gradient(transparent 35%, #449e6a 35%);
-        background: radial-gradient(transparent 35%, #449e6a 35%); }
+        background: -webkit-radial-gradient(transparent 35%, rgba(51, 122, 183, 0.55) 35%);
+        background: -moz-radial-gradient(transparent 35%, rgba(51, 122, 183, 0.55) 35%);
+        background: radial-gradient(transparent 35%, rgba(51, 122, 183, 0.55) 35%); }
       .csstransforms .cn-wrapper li a:focus {
         position: fixed; }
   @media only screen and (max-width: 480px) {
@@ -389,15 +391,17 @@ table {
   display: none; }
 
 .createRoutine {
-  background: #e6e6e6;
+  background: #f3f3f3;
   top: -32px; }
   .createRoutine #sideTab {
-    width: 0px;
     position: absolute;
-    background: #000;
-    transition: all .2s;
-    height: 100%;
-    z-index: 5; }
+    background: rgba(51, 122, 183, 0.88);
+    transition: all .5s;
+    height: 99%;
+    z-index: 5;
+    border-radius: 0px 15px 15px 0px;
+    border: 1px solid #b4b4b4;
+    box-shadow: 5px 5px 5px #424242; }
     .createRoutine #sideTab .prefillOptions {
       display: none; }
       .createRoutine #sideTab .prefillOptions #closeTab {
@@ -424,95 +428,109 @@ table {
         width: 100%;
         font-size: 2em; }
   .createRoutine #openSide {
-    font-size: 1.5em;
-    cursor: pointer;
-    margin: 10px;
-    top: 6px;
+    padding: 5px 10px 5px 5px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #3c3c3c;
     text-transform: uppercase;
-    font-weight: 700;
-    display: inline-block; }
+    border: 1px solid #b0aaaa;
+    box-shadow: 4px 5px 5px #5f5e5e;
+    font-size: 1.7em;
+    margin: 10px 0px 10px 15px; }
   .createRoutine .taskForm {
     display: block;
-    width: 80%;
+    width: 85%;
     margin: 0 auto; }
     .createRoutine .taskForm label {
       display: block;
       max-width: 100%;
       margin-bottom: 10px;
-      font-weight: 800;
-      font-size: 2em; }
+      font-size: 1.7em; }
       .createRoutine .taskForm label input {
         width: 54%;
         float: right;
         height: 30px;
         border: 1px solid #a4a4a4;
-        border-radius: 5px; }
+        border-radius: 5px;
+        font-family: "Chivo", sans-serif; }
     .createRoutine .taskForm button {
       float: right;
       font-size: 2em;
       padding: 8px;
       margin: 4px;
-      border-radius: 5px; }
-    .createRoutine .taskForm #taskFormHeader {
-      text-align: center;
-      font-size: 2.5em;
-      font-weight: 700;
-      text-transform: uppercase; }
+      border-radius: 5px;
+      background: #fff;
+      border: 1px solid #747474; }
   .createRoutine #printContent {
     clear: both;
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     display: block;
-    font-size: 2em;
     top: 15px; }
     .createRoutine #printContent li {
       margin: 17px 0px;
-      border-bottom: 1px solid; }
+      border-bottom: 1px solid;
+      font-size: 1.5em; }
+      .createRoutine #printContent li span {
+        font-family: "Chivo", sans-serif;
+        font-weight: 800; }
     .createRoutine #printContent button {
       float: right;
-      padding: 5px;
+      padding: 5px 25px 5px 5px;
       border-radius: 5px;
-      background: #ce3737;
+      background: #e10505;
       color: #fff;
       text-transform: uppercase;
       border: 1px solid #b0aaaa;
       box-shadow: 4px 5px 5px #5f5e5e;
       bottom: 15px; }
   .createRoutine #removeAllTask {
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
     clear: both;
     margin: 0 auto;
     font-size: 2em; }
     .createRoutine #removeAllTask button {
       float: right;
-      padding: 5px;
+      padding: 8px;
+      margin: 4px;
       border-radius: 5px;
-      background: red;
+      background: #fff;
+      border: 1px solid #747474; }
+  .createRoutine #routineCreationForm {
+    width: 85%;
+    margin: 0 auto;
+    display: block;
+    clear: both; }
+    .createRoutine #routineCreationForm > h2 {
+      top: 10px; }
+    .createRoutine #routineCreationForm button {
+      float: right;
+      padding: 5px 35px 5px 5px;
+      border-radius: 5px;
+      background: #52be7f;
       color: #fff;
       text-transform: uppercase;
       border: 1px solid #b0aaaa;
-      box-shadow: 4px 5px 5px #5f5e5e; }
-  .createRoutine #routineCreationForm {
-    width: 80%;
-    margin: 0 auto;
-    display: block;
-    clear: both;
-    font-size: 2em; }
-    .createRoutine #routineCreationForm > p {
-      display: inline-block; }
-    .createRoutine #routineCreationForm button {
-      float: right; }
+      box-shadow: 4px 5px 5px #5f5e5e;
+      font-size: 1.7em; }
+    .createRoutine #routineCreationForm label {
+      display: inlne-block;
+      max-width: 100%;
+      margin-bottom: 10px;
+      font-size: 1.7em; }
+      .createRoutine #routineCreationForm label input {
+        font-family: "Chivo", sans-serif; }
   .createRoutine #totalTime {
     display: block;
     right: -1px;
     position: relative;
     text-align: center;
-    width: 80%;
+    width: 85%;
     margin: 0 auto;
-    font-size: 2em;
     clear: both;
-    text-transform: uppercase; }
+    text-transform: uppercase;
+    padding: 30px 0px; }
     .createRoutine #totalTime span {
       color: #2c992f; }
   .createRoutine #mapWrapper {
@@ -530,3 +548,280 @@ body {
   display: block;
   max-width: 1120px;
   margin: 0 auto; }
+
+h1, h2, h3, h4, h5 {
+  font-family: "Nunito", sans-serif; }
+
+h2 {
+  font-size: 2.5em;
+  text-align: center;
+  text-transform: uppercase;
+  margin: 10px 0px; }
+
+/* Outline Out */
+.hvr-outline-out {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative; }
+  .hvr-outline-out:before {
+    content: '';
+    position: absolute;
+    border: #000 solid 4px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-property: top, right, bottom, left;
+    transition-property: top, right, bottom, left; }
+  .hvr-outline-out:hover:before, .hvr-outline-out:focus:before, .hvr-outline-out:active:before {
+    top: -8px;
+    right: -8px;
+    bottom: -8px;
+    left: -8px; }
+
+/* Shutter Out Horizontal */
+.hvr-shutter-out-horizontal {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  background: #e1e1e1;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s; }
+  .hvr-shutter-out-horizontal.red:before {
+    background: #e10505; }
+  .hvr-shutter-out-horizontal.green:before {
+    background: #52be7f; }
+  .hvr-shutter-out-horizontal:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 50%;
+    transform-origin: 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out; }
+  .hvr-shutter-out-horizontal:hover, .hvr-shutter-out-horizontal:focus, .hvr-shutter-out-horizontal:active {
+    color: white; }
+    .hvr-shutter-out-horizontal:hover:before, .hvr-shutter-out-horizontal:focus:before, .hvr-shutter-out-horizontal:active:before {
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1); }
+
+/* Icon Down */
+@-webkit-keyframes hvr-icon-down {
+  0%,
+  50%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); }
+  25%,
+  75% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); } }
+
+@keyframes hvr-icon-down {
+  0%,
+  50%,
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0); }
+  25%,
+  75% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); } }
+
+/* Icon Down */
+.hvr-icon-down {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  padding-right: 2.2em; }
+
+.hvr-icon-down:before {
+  content: "\f056";
+  position: absolute;
+  right: 0.2em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); }
+
+.hvr-icon-down:hover:before, .hvr-icon-down:focus:before, .hvr-icon-down:active:before {
+  -webkit-animation-name: hvr-icon-down;
+  animation-name: hvr-icon-down;
+  -webkit-animation-duration: 0.75s;
+  animation-duration: 0.75s;
+  -webkit-animation-timing-function: ease-out;
+  animation-timing-function: ease-out; }
+
+/* Icon Spin */
+.hvr-icon-spin {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  padding-right: 2.2em; }
+
+.hvr-icon-spin:before {
+  content: "\f056";
+  position: absolute;
+  right: 0.2em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+  -webkit-transition-timing-function: ease-in-out;
+  transition-timing-function: ease-in-out; }
+
+.hvr-icon-spin:hover:before, .hvr-icon-spin:focus:before, .hvr-icon-spin:active:before {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg); }
+
+/* Icon Fade */
+.hvr-icon-fade {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  padding-right: 2.2em; }
+
+.hvr-icon-fade:before {
+  content: "\f00c";
+  position: absolute;
+  right: 0.2em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-transition-duration: 0.5s;
+  transition-duration: 0.5s;
+  -webkit-transition-property: color;
+  transition-property: color; }
+
+.hvr-icon-fade:hover:before, .hvr-icon-fade:focus:before, .hvr-icon-fade:active:before {
+  color: #0F9E5E; }
+
+/* Icon Hang */
+@-webkit-keyframes hvr-icon-hang {
+  0% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); }
+  50% {
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px); }
+  100% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); } }
+
+@keyframes hvr-icon-hang {
+  0% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); }
+  50% {
+    -webkit-transform: translateY(2px);
+    transform: translateY(2px); }
+  100% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); } }
+
+@-webkit-keyframes hvr-icon-hang-sink {
+  100% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); } }
+
+@keyframes hvr-icon-hang-sink {
+  100% {
+    -webkit-transform: translateY(6px);
+    transform: translateY(6px); } }
+
+.hvr-icon-hang {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  padding-right: 2.2em;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s; }
+
+.hvr-icon-hang:before {
+  content: "\f0c7";
+  position: absolute;
+  right: 0.2em;
+  padding: 0 1px;
+  font-family: FontAwesome;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0); }
+
+.hvr-icon-hang:hover:before, .hvr-icon-hang:focus:before, .hvr-icon-hang:active:before {
+  -webkit-animation-name: hvr-icon-hang-sink, hvr-icon-hang;
+  animation-name: hvr-icon-hang-sink, hvr-icon-hang;
+  -webkit-animation-duration: .3s, 1.5s;
+  animation-duration: .3s, 1.5s;
+  -webkit-animation-delay: 0s, .3s;
+  animation-delay: 0s, .3s;
+  -webkit-animation-timing-function: ease-out, ease-in-out;
+  animation-timing-function: ease-out, ease-in-out;
+  -webkit-animation-iteration-count: 1, infinite;
+  animation-iteration-count: 1, infinite;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+  -webkit-animation-direction: normal, alternate;
+  animation-direction: normal, alternate; }
+
+/* Underline From Right */
+.hvr-underline-from-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  overflow: hidden; }
+
+.hvr-underline-from-right:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  left: 100%;
+  right: 0;
+  bottom: 0;
+  background: #2098D1;
+  height: 4px;
+  -webkit-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-timing-function: ease-out;
+  transition-timing-function: ease-out; }
+
+.hvr-underline-from-right:hover:before, .hvr-underline-from-right:focus:before, .hvr-underline-from-right:active:before {
+  left: 0; }
