@@ -5,17 +5,34 @@ TCommander.directive('tcsidetab', [function() {
 	var linker = function(scope, element, attrs){
 		$('#openSide').on('click',function(){
 			var showSize = $('#sideTab select option').length;
-		    $('.createRoutine #sideTab .prefillOptions').css('display','block');
-		    $('#sideTab').css('width','250px');
+		   
+
+		    $('#sideTab').animate({width: '250px'}, 100, function() {
+		    	 $('.createRoutine #sideTab .prefillOptions').show(700);
+		    });
    			$('#sideTab select').attr('size',showSize);
 		});
 		$('#closeTab').on('click',function(){
-			$('.createRoutine #sideTab .prefillOptions').css('display','none');
-			$('#sideTab').css('width','0px');
+			$('.createRoutine #sideTab .prefillOptions').hide(100);
+			$('#sideTab').animate({width: '0px'}, 100, function() {});
 		})
 	}
 	return {
-		restric: 'EA',
+		restrict: 'EA',
         link: linker
+    }
+}]);
+
+TCommander.directive('tccomponentscroll', [function() {
+	var links = function(scope, element, attrs){
+		$('#cn-button').on('click',function(){
+			$('html, body').animate({
+		        scrollTop: 0
+		    }, 800);
+		});
+	}
+	return {
+		restrict: 'EA',
+        link: links
     }
 }]);

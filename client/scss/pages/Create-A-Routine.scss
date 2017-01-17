@@ -1,13 +1,15 @@
 .createRoutine{
-	background:#e6e6e6;
+	background:#f3f3f3;
 	top: $partialTopSpacing;
 	#sideTab{
-		width:0px;
 		position: absolute;
-		background: #000;
-		transition: all .2s;
-		height: 100%;
-		z-index: 5;
+	    background: rgba(51, 122, 183, 0.88);
+	    transition: all .5s;
+	    height: 99%;
+	    z-index: 5;
+	    border-radius: 0px 15px 15px 0px;
+	    border: 1px solid #b4b4b4;
+	    box-shadow: 5px 5px 5px #424242;
 		.prefillOptions{
 			display:none;
 			#closeTab{
@@ -41,30 +43,33 @@
 		}
 	}
 	#openSide{
-		font-size: 1.5em;
-	    cursor: pointer;
-	    margin: 10px;
-	    top: 6px;
-	    text-transform: uppercase;
-	    font-weight: 700;
-	    display: inline-block;
+    padding: 5px 10px 5px 5px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #3c3c3c;
+    text-transform: uppercase;
+    border: 1px solid #b0aaaa;
+    box-shadow: 4px 5px 5px #5f5e5e;
+    font-size: 1.7em;
+    margin: 10px 0px 10px 15px;
 	}
 	.taskForm{
 		display: block;
-		width:80%;
+		width:85%;
 		margin:0 auto;
 		label{
 			display: block;
 			max-width: 100%;
 			margin-bottom: 10px;
-			font-weight: 800;
-			font-size:2em;
+			font-size:1.7em;
+			
 			input{
 				width: 54%;
 			    float: right;
 			    height: 30px;
 			    border: 1px solid #a4a4a4;
 			    border-radius: 5px;
+			    font-family: $Chivo;
 			}
 		}
 		button{
@@ -73,30 +78,30 @@
 		    padding: 8px;
 		    margin: 4px;
 		    border-radius: 5px;
-		}
-		#taskFormHeader{
-			text-align: center;
-		    font-size: 2.5em;
-		    font-weight: 700;
-		    text-transform: uppercase;
+		    background: #fff;
+		    border: 1px solid #747474;
 		}
 	}
 	#printContent{
 		clear: both;
-	    width: 80%;
+	    width: 85%;
 	    margin: 0 auto;
 	    display: block;
-	    font-size: 2em;
 	    top: 15px;
 	    li{
 	    	margin: 17px 0px;
     		border-bottom: 1px solid;
+    		font-size:1.5em;
+    		span{
+    			font-family: $Chivo;
+    			font-weight: 800;
+    		}
 	    }
 	    button{
 	    	float: right;
-		    padding: 5px;
+		    padding: 5px 25px 5px 5px;
 		    border-radius: 5px;
-		    background: #ce3737;
+		    background: #e10505;
 		    color: #fff;
 		    text-transform: uppercase;
 		    border: 1px solid #b0aaaa;
@@ -105,48 +110,64 @@
 	    }
 	}
 	#removeAllTask{
-		width: 80%;
+		width: 85%;
 	    margin: 0 auto;
 	    clear: both;
 	    margin: 0 auto;
 	    font-size: 2em;
 	    button{
 	    	float: right;
-		    padding: 5px;
+		    padding: 8px;
+		    margin: 4px;
 		    border-radius: 5px;
-		    background: red;
+		    background: #fff;
+		    border: 1px solid #747474;
+	    }
+	}
+	#routineCreationForm{
+	    width: 85%;
+	    margin: 0 auto;
+	    display: block;
+	    clear: both;
+	    >h2{
+	    	top:10px;
+	    }
+	    button{
+	    	float: right;
+		    padding: 5px 35px 5px 5px;
+		    border-radius: 5px;
+		    background: #52be7f;
 		    color: #fff;
 		    text-transform: uppercase;
 		    border: 1px solid #b0aaaa;
 		    box-shadow: 4px 5px 5px #5f5e5e;
+		    font-size: 1.7em;
 	    }
-	}
-	#routineCreationForm{
-	    width: 80%;
-	    margin: 0 auto;
-	    display: block;
-	    clear: both;
-	    font-size: 2em;
-	    >p{
-	    	display:inline-block;
+		label{
+	    	display: inlne-block;
+		    max-width: 100%;
+		    margin-bottom: 10px;
+		    font-size: 1.7em;
+		    input{
+		    	font-family: $Chivo;
+		    }
 	    }
-	    button{
-	    	float:right;
-	    }
+
 	}
 	#totalTime{
 		display: block;
 	    right: -1px;
 	    position: relative;
 	    text-align: center;
-	    width: 80%;
+	    width: 85%;
 	    margin: 0 auto;
-	    font-size: 2em;
 	    clear: both;
 	    text-transform: uppercase;
+	    padding: 30px 0px;
 	    span{
 	    	color:#2c992f;
 	    }
+
 	}
 	#mapWrapper{
 		position: relative;

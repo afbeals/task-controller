@@ -10,6 +10,11 @@ to do:
 //form validations
 //url = case insensitive
 //adjust $scope.presentInDatabase in FE controller_scripts.js
+//create variables of common styles
+//add pin functionality
+//fix sidetab animation
+//add styling for login /registration
+//add logout function
 
 known bugs:
 
