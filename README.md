@@ -15,6 +15,7 @@ to do:
 //fix sidetab animation
 //add styling for login /registration
 //add logout function
+//replace variables
 
 known bugs:
 

@@ -27,7 +27,7 @@
 			<!-- <div ng-messages="task_form.task_location.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_location.$touched"></div> -->
 			<p ng-show="task_form.task_location.$invalid && !task_form.task_location.$pristine && task_form.task_location.$touched">Task Location is required.</p>
 		</label> 
-		<button class="hvr-shutter-out-horizontal blue" ng-click="addTaskToSesRoutine(); task_form.$setPristine();task_form.$setUntouched()" ng-disabled="task_form.$pristine || !task_form.$dirty || task_form.$invalid" type="submit">Add Task!</button>
+		<button class="hvr-shutter-out-horizontal green" ng-click="addTaskToSesRoutine(); task_form.$setPristine();task_form.$setUntouched()" ng-disabled="task_form.$pristine || !task_form.$dirty || task_form.$invalid" type="submit">Add Task!</button>
 		<button class="hvr-shutter-out-horizontal red" ng-click="task_form.$setPristine();task_form.$setUntouched();clearForm()" type="submit">Clear</button>
 
 

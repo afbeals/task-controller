@@ -40,7 +40,7 @@
 		border-radius: 50%;
 		background: none;
 		background-color: #fff;
-		color: #52be7f;
+		color: #337ab7;
 		text-align: center;
 		font-weight: 700;
 		font-size: 1.5em;
@@ -120,10 +120,10 @@
 				width: 14.5em;
 				height: 14.5em;
 				border-radius: 50%;
-				background: #429a67;
-				background: -webkit-radial-gradient(transparent 35%, #429a67 35%);
-				background: -moz-radial-gradient(transparent 35%, #429a67 35%);
-				background: radial-gradient(transparent 35%, #429a67 35%);
+				background: #337ab7;
+				background: -webkit-radial-gradient(transparent 35%, #337ab7 35%);
+				background: -moz-radial-gradient(transparent 35%, #337ab7 35%);
+				background: radial-gradient(transparent 35%, #337ab7 35%);
 				color: #fff;
 				text-align: center;
 				text-decoration: none;
@@ -145,9 +145,9 @@
 					text-transform: uppercase;
 				}
 				&:hover,&:active,&:focus{
-					background: -webkit-radial-gradient(transparent 35%, #449e6a 35%);
-					background: -moz-radial-gradient(transparent 35%, #449e6a 35%);
-					background: radial-gradient(transparent 35%, #449e6a 35%);
+					background: -webkit-radial-gradient(transparent 35%, $primary-blue-hover 35%);
+					background: -moz-radial-gradient(transparent 35%, $primary-blue-hover 35%);
+					background: radial-gradient(transparent 35%, $primary-blue-hover 35%);
 				}
 				// fix the displacement bug in webkit browsers when using tab key
 				&:focus {

@@ -198,7 +198,7 @@ table {
     border-radius: 50%;
     background: none;
     background-color: #fff;
-    color: #52be7f;
+    color: #337ab7;
     text-align: center;
     font-weight: 700;
     font-size: 1.5em;
@@ -273,10 +273,10 @@ table {
       width: 14.5em;
       height: 14.5em;
       border-radius: 50%;
-      background: #429a67;
-      background: -webkit-radial-gradient(transparent 35%, #429a67 35%);
-      background: -moz-radial-gradient(transparent 35%, #429a67 35%);
-      background: radial-gradient(transparent 35%, #429a67 35%);
+      background: #337ab7;
+      background: -webkit-radial-gradient(transparent 35%, #337ab7 35%);
+      background: -moz-radial-gradient(transparent 35%, #337ab7 35%);
+      background: radial-gradient(transparent 35%, #337ab7 35%);
       color: #fff;
       text-align: center;
       text-decoration: none;
@@ -297,9 +297,9 @@ table {
         font-weight: 700;
         text-transform: uppercase; }
       .csstransforms .cn-wrapper li a:hover, .csstransforms .cn-wrapper li a:active, .csstransforms .cn-wrapper li a:focus {
-        background: -webkit-radial-gradient(transparent 35%, #449e6a 35%);
-        background: -moz-radial-gradient(transparent 35%, #449e6a 35%);
-        background: radial-gradient(transparent 35%, #449e6a 35%); }
+        background: -webkit-radial-gradient(transparent 35%, rgba(51, 122, 183, 0.55) 35%);
+        background: -moz-radial-gradient(transparent 35%, rgba(51, 122, 183, 0.55) 35%);
+        background: radial-gradient(transparent 35%, rgba(51, 122, 183, 0.55) 35%); }
       .csstransforms .cn-wrapper li a:focus {
         position: fixed; }
   @media only screen and (max-width: 480px) {
@@ -599,8 +599,8 @@ h2 {
   transition-duration: 0.3s; }
   .hvr-shutter-out-horizontal.red:before {
     background: #e10505; }
-  .hvr-shutter-out-horizontal.blue:before {
-    background: #2098D1; }
+  .hvr-shutter-out-horizontal.green:before {
+    background: #52be7f; }
   .hvr-shutter-out-horizontal:before {
     content: "";
     position: absolute;
