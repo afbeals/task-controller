@@ -5,7 +5,7 @@ to do:
 //form validations
 //adjust $scope.presentInDatabase in FE controller_scripts.js
 //add remove pin functionality
-//add styling for login /registration
+//move login/register to nav_controller (maybe)
 
 
 known bugs:
