@@ -45,7 +45,7 @@
 	<div id="navbar" ng-controller="nav_controller">
 		Task Commander
 		<div id="profileSiloutte">
-			<a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i><p>username</p></a>	
+			<a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i><p>{{user.name}}</p></a>	
 		</div>
 		<div class="component" >
 			<!-- Start Nav Structure -->
@@ -60,7 +60,7 @@
 			</div>
 			<!-- End of Nav Structure -->
 		</div>
-		<a href="#" id="logOut"><p>Log Out</p></a>
+		<a href="#" id="logOut" ng-click="logOutUser"><p>Log Out</p></a>
 	</div>
 	<!-- controllers view -->
 	<div class="ng-view">

@@ -69,6 +69,14 @@ TCommander.factory('users_factory', function($http, $location) {
 		})
 	}
 
+	factory.logOutUser = function(){
+		$http.post('/logOutUser').success(function(){
+			$location.path("/");
+		}).error(function(){
+			console.log("there was an error logging user out")
+		})
+	}
+
 	//return object methods
 	return factory;
 });

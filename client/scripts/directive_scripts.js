@@ -8,7 +8,7 @@ TCommander.directive('tcsidetab', [function() {
 		   
 
 		    $('#sideTab').animate({width: '250px'}, 100, function() {
-		    	 $('.createRoutine #sideTab .prefillOptions').show(700);
+		    	 $('.createRoutine #sideTab .prefillOptions').fadeIn(2000);
 		    });
    			$('#sideTab select').attr('size',showSize);
 		});

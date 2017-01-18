@@ -13,6 +13,15 @@ module.exports = function(app)
 	app.post('/loginUser',function(req,res){
 		users.loginUser(req,res);
 	}),
+	app.post('/logOutUser',function(req,res){
+		req.session.destroy(function(err){
+	    	if(err){
+	        	console.log(err);
+	      	}else{
+	        	res.sendStatus(200);
+	      	}
+	    })
+	}),
 	app.get('/getRoutine/:routine_name', function(req,res){
 		routines.getRoutine(req,res);
 	}),

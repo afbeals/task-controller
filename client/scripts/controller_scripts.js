@@ -1,6 +1,14 @@
 //Front end controllers
 //Navbar Controller
-TCommander.controller('nav_controller',['$cookies','$scope', 'users_factory', function ($cookies, $scope, routines_factory){
+TCommander.controller('nav_controller',['$cookies','$scope', 'users_factory', function ($cookies, $scope, users_factory){
+	$scope.user={name: $cookies.get('username')};
+	
+	$scope.logOutUser = function(){
+		$cookies.remove('username');
+		$cookies.remove('first_name');
+		$cookies.remove('home');
+		users_factory.logOutUser();
+	}
 }]);
 
 //Form Controller
@@ -13,6 +21,7 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	$scope.totalTime = "";
 	$scope.newRoutine = {tasks:[]};
 	$scope.param = $routeParams.routine_name;
+	$scope.locations = [];
 
 	//unused
 
@@ -23,6 +32,8 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	var get_session_task = function(){
 		for(task in sessionStorage){
 			$scope.newRoutine.tasks.push(JSON.parse(sessionStorage[task]));
+			var currentLocation = JSON.parse(sessionStorage[task])
+			$scope.locations.push(currentLocation.task_location);
 		}
 	}
 
@@ -53,7 +64,6 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	var getAllRoutines = function(){
 		routines_factory.getAllRoutines(function(routine){
 			$scope.routine = routine;
-			console.log(routine);
 		})
 	}
 
@@ -61,7 +71,17 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 
     //Google Maps Api info
 	//set location for pin / create map on front end in <div id="map"></div>
-	var cities = "Atlanta, USA";
+	var cities;
+	var locationsCheck = function(){
+		if($scope.locations.length){
+			$scope.locations.push($cookies.get('home'))
+			cities = $scope.locations;
+		}else{
+			cities = ["Portland, OR"];
+		}	
+	}
+	
+
   	var geocoder= new google.maps.Geocoder();
   
    	$scope.markers = [];
@@ -69,21 +89,40 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
    	var createMarker = function (info){
         var marker = new google.maps.Marker({
             map: $scope.map,
+            draggable: true,
+          	animation: google.maps.Animation.DROP,
             position: new google.maps.LatLng(info.lat(), info.lng())
         });
    	}
 
-  	geocoder.geocode( { 'address': cities }, function(results, status) {
-    	if (status == google.maps.GeocoderStatus.OK) {
-        	newAddress = results[0].geometry.location;
-        	$scope.map.setCenter(newAddress);
-        	createMarker(newAddress)
-  	 	}
-  	});
+   	$scope.addMarker = function(city){
+   		geocoder.geocode( { 'address': city }, function(results, status) {
+	    	if (status == google.maps.GeocoderStatus.OK) {
+	    		$scope.locations.push(city);
+	        	newAddress = results[0].geometry.location;
+	        	$scope.map.setCenter(newAddress);
+	        	createMarker(newAddress)
+	  	 	}
+	  	});
+   	}
 
+   	var geoloadCurrentLocations = function(){
+	   	for(var x = 0;x<cities.length;++x){
+	   		geocoder.geocode( { 'address': cities[x] }, function(results, status) {
+		    	if (status == google.maps.GeocoderStatus.OK) {
+		    		console.log(results);
+		        	newAddress = results[0].geometry.location;
+		        	$scope.map.setCenter(newAddress);
+		        	createMarker(newAddress)
+		  	 	}
+		  	});
+	   	}	
+   	}
+   	
+  	
   $scope.mapOptions = {
-        zoom: 4,
-        //center: new google.maps.LatLng(41.923, 12.513),
+        zoom: 9,
+        //center: new google.maps.LatLng(39.923, 12.513),
         mapTypeId: google.maps.MapTypeId.TERRAIN
     }
 
@@ -163,6 +202,7 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
             //if first item in list then use home as origin location
             if(sessionStorage[session_task_name] == sessionStorage[Object.keys(sessionStorage)[0]]){
             	$scope.task.order = 0;
+            	$scope.locations.push($cookies.get('home'));
             	getNewDistance($cookies.get('home'), $scope.task.task_location);           
             }else{
             	//set order to last in list of objects
@@ -183,11 +223,17 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 		if(sessionStorage.getItem("task:"+name)){
 			//search through tasks array for object matching name to get index
 			var elementPosition = $scope.newRoutine.tasks.map(function(x) {return x.task_name; }).indexOf(name);
+			var item = JSON.parse(sessionStorage.getItem('task:'+name));
+			var currentLocation = item.task_location;
+			console.log(item,currentLocation,$scope.locations);
 			//remove from sessionStorage
 			sessionStorage.removeItem("task:"+name);
 			//remove from array
 			$scope.newRoutine.tasks.splice(elementPosition, 1);
+			//recalculate time
 			calculateTotalDuration(timeConvert);
+			$scope.locations.splice($scope.locations.indexOf(currentLocation,1));
+			geoloadCurrentLocations();
 		}else{
 			alert('hmm something went wrong, please reload the page and try again.')
 		}
@@ -199,6 +245,8 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 			    sessionStorage.clear();
 			    $scope.newRoutine.tasks=[];
 			    $scope.totalTime="";
+			    $scope.locations = [];
+			    geoloadCurrentLocations();
 			}
 		}
 	}
@@ -229,6 +277,8 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	getAllRoutines();
 	get_session_task();
 	calculateTotalDuration(timeConvert);
+	locationsCheck();
+	//geoloadCurrentLocations();
 }]);
 
 //Users Controller

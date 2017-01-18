@@ -67,12 +67,12 @@ h2{
   transition-duration: 0.3s;
   &.red{
   	&:before{
-  		background: #e10505;
+  		background: $primary-red;
   	}
   }
   &.green{
   	&:before{
-  		background: #52be7f;
+  		background: $primary-green;
   	}
   }
   &:before{
