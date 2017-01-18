@@ -1,0 +1,35 @@
+.register{
+	background:#f3f3f3;
+	top: $partialTopSpacing;
+	min-height:490px;
+	#registrationForm{
+		padding-top: 55px;
+		display:block;
+		width: 85%;
+		margin:0 auto;
+		label{
+			display: block;
+			max-width: 100%;
+			margin-bottom: 10px;
+			font-size:1.7em;
+			
+			input{
+				width: 54%;
+			    float: right;
+			    height: 30px;
+			    border: 1px solid #a4a4a4;
+			    border-radius: 5px;
+			    font-family: $Chivo;
+			}
+		}
+		button{
+			float: right;
+		    font-size: 2em;
+		    padding: 8px;
+		    margin: 4px;
+		    border-radius: 5px;
+		    background: #fff;
+		    border: 1px solid #747474;
+		}
+	}
+}

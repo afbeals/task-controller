@@ -544,6 +544,66 @@ table {
       width: 98%;
       height: 98%; }
 
+.login {
+  background: #f3f3f3;
+  top: -32px;
+  min-height: 255px; }
+  .login #loginForm {
+    padding-top: 55px;
+    display: block;
+    width: 85%;
+    margin: 0 auto; }
+    .login #loginForm label {
+      display: block;
+      max-width: 100%;
+      margin-bottom: 10px;
+      font-size: 1.7em; }
+      .login #loginForm label input {
+        width: 54%;
+        float: right;
+        height: 30px;
+        border: 1px solid #a4a4a4;
+        border-radius: 5px;
+        font-family: "Chivo", sans-serif; }
+    .login #loginForm button {
+      float: right;
+      font-size: 2em;
+      padding: 8px;
+      margin: 4px;
+      border-radius: 5px;
+      background: #fff;
+      border: 1px solid #747474; }
+
+.register {
+  background: #f3f3f3;
+  top: -32px;
+  min-height: 490px; }
+  .register #registrationForm {
+    padding-top: 55px;
+    display: block;
+    width: 85%;
+    margin: 0 auto; }
+    .register #registrationForm label {
+      display: block;
+      max-width: 100%;
+      margin-bottom: 10px;
+      font-size: 1.7em; }
+      .register #registrationForm label input {
+        width: 54%;
+        float: right;
+        height: 30px;
+        border: 1px solid #a4a4a4;
+        border-radius: 5px;
+        font-family: "Chivo", sans-serif; }
+    .register #registrationForm button {
+      float: right;
+      font-size: 2em;
+      padding: 8px;
+      margin: 4px;
+      border-radius: 5px;
+      background: #fff;
+      border: 1px solid #747474; }
+
 body {
   display: block;
   max-width: 1120px;
@@ -601,6 +661,8 @@ h2 {
     background: #e10505; }
   .hvr-shutter-out-horizontal.green:before {
     background: #52be7f; }
+  .hvr-shutter-out-horizontal.blue:before {
+    background: #337ab7; }
   .hvr-shutter-out-horizontal:before {
     content: "";
     position: absolute;
