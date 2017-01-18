@@ -3,6 +3,8 @@
 @import 'nav_menu/navbar';
 @import 'nav_menu/component';
 @import 'pages/Create-A-Routine';
+@import 'pages/login';
+@import 'pages/registration';
 
 body{
 	display: block;
@@ -74,6 +76,11 @@ h2{
   	&:before{
   		background: $primary-green;
   	}
+  }
+  &.blue{
+    &:before{
+      background: $primary-blue;
+    }
   }
   &:before{
 	  content: "";

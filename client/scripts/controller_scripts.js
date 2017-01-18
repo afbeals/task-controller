@@ -1,13 +1,38 @@
 //Front end controllers
-//Navbar Controller
-TCommander.controller('nav_controller',['$cookies','$scope', 'users_factory', function ($cookies, $scope, users_factory){
-	$scope.user={name: $cookies.get('username')};
-	
+//Navbar/Users Controller
+TCommander.controller('nav_controller',['$location','$cookies','$scope', 'users_factory', function ($location, $cookies, $scope, users_factory){
+	$scope.currentUser="tes";
+	$scope.user={};
 	$scope.logOutUser = function(){
 		$cookies.remove('username');
 		$cookies.remove('first_name');
 		$cookies.remove('home');
+		$scope.currentUser="";
 		users_factory.logOutUser();
+	}
+	$scope.passMatch = function(){
+	}
+
+	$scope.registerUser = function(){
+		users_factory.registerUser($scope.user);
+		$scope.currentUser.name = $scope.user.username;
+		$scope.user={};
+	}
+
+	$scope.loginUser = function(){
+		users_factory.loginUser($scope.user,function(user){
+			$cookies.remove('username');
+			$cookies.remove('first_name');
+			$cookies.remove('home');
+			$cookies.put('username',user.username);
+			$cookies.put('first_name',user.first_name);
+			$cookies.put('home',user.home);
+			$scope.currentUser = user.username;
+		});
+	}
+
+	$scope.go = function(path) {
+	  $location.path(path);
 	}
 }]);
 
@@ -279,32 +304,6 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	calculateTotalDuration(timeConvert);
 	locationsCheck();
 	//geoloadCurrentLocations();
-}]);
-
-//Users Controller
-TCommander.controller('users_controller',['$cookies','$scope', 'users_factory', function ($cookies, $scope, users_factory){
-	$scope.user={};
-
-	//password confirmation match check:
-	$scope.passMatch = function(){
-	}
-
-	$scope.registerUser = function(){
-		users_factory.registerUser($scope.user);
-		$scope.user={};
-	}
-
-	$scope.loginUser = function(){
-		users_factory.loginUser($scope.user,function(user){
-			$cookies.remove('username');
-			$cookies.remove('first_name');
-			$cookies.remove('home');
-			$cookies.put('username',user.username);
-			$cookies.put('first_name',user.first_name);
-			$cookies.put('home',user.home);
-		});
-	}
-
 }]);
 
 TCommander.controller('single_routine_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
