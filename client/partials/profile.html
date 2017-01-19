@@ -1,6 +1,46 @@
-<h1>My Profile!</h1>
+<div class="profile">
+	<div class="userImage">
+		<i class="fa fa-user fa-5x" aria-hidden="true"></i>
+		<p>{{currentUser.currentUser}}</p>
+	</div>
+	<ng-form name="update_user_form" id="updateUserForm" novalidate>
+		<label for="username">
 
+			<p>Username:</p> <input type="text" placeholder="{{currentUser.currentUser}}" name="username" ng-model="updateUser.username">
+			<p ng-show="update_user_form.username.$invalid && !update_user_form.username.$pristine && update_user_form.username.$touched">Username must be valid.</p>
+			<button class="hvr-icon-wobble-horizontal">edit</button>
+		</label>
+		<label for="email">
+			<p>Email:</p> <input type="text" placeholder="{{currentUser.email}}" name="email" ng-model="updateUser.email">
+			<p ng-show="update_user_form.email.$invalid && !update_user_form.email.$pristine && update_user_form.email.$touched">Email must be valid.</p>
+			<button class="hvr-icon-wobble-horizontal">edit</button>
+		</label>
+		<label for="home">
+			<p>Home:</p> <input type="text" placeholder="{{currentUser.home}}" name="home" ng-model="updateUser.home">
+			<p ng-show="update_user_form.home.$invalid && !update_user_form.home.$pristine && update_user_form.home.$touched">Home is Required.</p>
+			<button class="hvr-icon-wobble-horizontal">edit</button>
+		</label>
 
-<p>{{currentUser.first_name}}</p>
+		<label for="old_password">
+			<p>Old Password:</p><input type="password" name="old_password" ng-model="updateUser.old_password" ng-minlength="7" ng-minlength="21" required>
+			<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
+			<p ng-show="update_user_form.old_password.$invalid && !update_user_form.old_password.$pristine && update_user_form.old_password.$touched">Password is required.</p>
+			<button class="hvr-icon-wobble-horizontal">edit</button>
+		</label>
 
-<button ng-click="test()">Test</button>
+		<label for="password">
+			<p>Password:</p><input type="password" name="password" ng-model="updateUser.password" ng-minlength="7" ng-minlength="21" required>
+			<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
+			<p ng-show="update_user_form.password.$invalid && !update_user_form.password.$pristine && update_user_form.password.$touched">Password is required.</p>
+			<button class="hvr-icon-wobble-horizontal">edit</button>
+		</label>
+
+		<label for="password_confirmation">
+			<p>Confirm Password:</p><input type="password" name="password_confirmation" ng-model="updateUser.password_confirmation" required>
+			<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
+			<p ng-show="">Password Confirmation does not match.</p>
+			<button class="hvr-icon-wobble-horizontal">edit</button>
+		</label>
+		<button class="hvr-shutter-out-horizontal green" ng-click="updateUser(); update_user_form.$setPristine();update_user_form.$setUntouched()" ng-disabled="update_user_form.$pristine || !update_user_form.$dirty || update_user_form.$invalid" type="submit">Update My Info!</button>
+	</ng-form>
+</div>

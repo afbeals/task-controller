@@ -1,0 +1,55 @@
+.profile{
+	background:#f3f3f3;
+	top: $partialTopSpacing;
+	min-height:520px;
+	.userImage{
+		width: 15%;
+	    display: inline-block;
+	    font-size: 4em;
+	    padding-top: 55px;
+	    margin-left: 20px;
+	    i{
+	    	color: $primary-blue;
+	    }
+	}
+	#updateUserForm{
+		padding-top: 55px;
+	    display: inline-block;
+	    width: 75%;
+	    float: right;
+	    margin-right: 15px;
+		label{
+			display: block;
+			max-width: 100%;
+			margin-bottom: 10px;
+			font-size:1.7em;
+			text-align:right;
+			input{
+				width: 54%;
+			    
+			    height: 30px;
+			    border: 1px solid #a4a4a4;
+			    border-radius: 5px;
+			    font-family: $Chivo;
+			}
+			button{
+				float: none;
+			    font-size: 1em;
+			    padding: 0px 10px 0px 40px;
+			}
+			p{
+				display:inline-block;
+				float:left;
+			}
+		}
+		button{
+			float: right;
+		    font-size: 2em;
+		    padding: 8px;
+		    margin: 4px;
+		    border-radius: 5px;
+		    background: #fff;
+		    border: 1px solid #747474;
+		}
+	}
+}
