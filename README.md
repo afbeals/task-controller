@@ -1,11 +1,18 @@
 to do:
-//registration = login and redirect
 //all styling
 //retriving routine updates the total duration of routine (after styling out full routine view)
 //form validations
 //adjust $scope.presentInDatabase in FE controller_scripts.js
 //add remove pin functionality
 //move login/register to nav_controller (maybe)
+//remove header on login and regist.
+//create routine page
+//user auth
+//create share page
+//create user update function
+//finish user profile page (form editing after button);
+
+
 
 
 known bugs:

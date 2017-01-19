@@ -11,7 +11,7 @@ TCommander.service('users_service',function(){
 	}
 
 	service.clearCurrentUser = function(){
-		service.currentUser = '';
+		service = {};
 	}
 
 	return service;
