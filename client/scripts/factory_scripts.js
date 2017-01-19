@@ -48,13 +48,14 @@ TCommander.factory('routines_factory', function($http, $location)
 });
 
 //Users Factory
-TCommander.factory('users_factory', function($http, $location) {
+TCommander.factory('users_factory', function($cookies, $http, $location) {
 	//initialize factory obj.
 	var factory = {};
 
 	factory.registerUser = function(user){
 		$http.post('/registerUser',user).success(function(){
-			console.log('successfully added user', user.first_name)
+			$location.path("Create-A-Routine");
+			callback();
 		}).error(function(){
 			console.log("there was an error in registering user")
 		})
@@ -75,6 +76,10 @@ TCommander.factory('users_factory', function($http, $location) {
 		}).error(function(){
 			console.log("there was an error logging user out")
 		})
+	}
+
+	factory.test =function(data){
+		$cookies.put('username','feeta');
 	}
 
 	//return object methods

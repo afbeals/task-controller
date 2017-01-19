@@ -37,6 +37,8 @@
 	<script type="text/javascript" src="./scripts/controller_scripts.js"></script>
 	<!-- Directive Source -->
 	<script type="text/javascript" src="./scripts/directive_scripts.js"></script>
+	<!-- Services Source -->
+	<script type="text/javascript" src="./scripts/services_scripts.js"></script>
 	<!-- Google Maps JavaScript API -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknN-ANnhDBwcvNZWR7icwYu6YnLL40qk&callback=initMap" defer></script>
 </head>
@@ -45,7 +47,7 @@
 	<div id="navbar" ng-controller="nav_controller">
 		Task Commander
 		<div id="profileSiloutte">
-			<a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i><p>{{currentUser}}</p></a>	
+			<a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i><p>{{currentUser.currentUser}}</p></a>	
 		</div>
 		<div class="component" >
 			<!-- Start Nav Structure -->
