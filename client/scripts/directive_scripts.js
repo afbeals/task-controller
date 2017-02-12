@@ -5,8 +5,6 @@ TCommander.directive('tcsidetab', [function() {
 	var linker = function(scope, element, attrs){
 		$('#openSide').on('click',function(){
 			var showSize = $('#sideTab select option').length;
-		   
-
 		    $('#sideTab').animate({width: '250px'}, 100, function() {
 		    	 $('.createRoutine #sideTab .prefillOptions').fadeIn(2000);
 		    });

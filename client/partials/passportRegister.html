@@ -1,0 +1,67 @@
+<div class="register">
+	<ng-form name="registration_form" id="registrationForm" novalidate>
+
+		<label for="first_name">
+			First Name:<input type="text" name="first_name" ng-model="user.first_name" ng-minlength="2" ng-maxlength="25" required>
+			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+			<p ng-show="registration_form.first_name.$invalid && !registration_form.first_name.$pristine && registration_form.first_name.$touched">First name is required.</p>
+		</label>
+
+		<label for="last_name">
+			Last Name:<input type="text" name="last_name" ng-model="user.last_name" ng-minlength="2" ng-maxlength="25" required>
+			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+			<p ng-show="registration_form.last_name.$invalid && !registration_form.last_name.$pristine && registration_form.last_name.$touched">Last name is required.</p>
+		</label>
+
+		<label for="email">
+			Email:<input type="email" name="email" ng-model="user.email" ng-minlength="5" ng-maxlength="30" required>
+			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+			<p ng-show="registration_form.email.$invalid && !registration_form.email.$pristine && registration_form.email.$touched">Email is required.</p>
+		</label>
+
+		<label for="email_confirmation">
+			Email:<input type="email" name="email_confirmation" ng-model="user.email_confirmation" ng-minlength="5" ng-maxlength="30" required>
+			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+			<p ng-show="registration_form.email_confirmation.$invalid && !registration_form.email_confirmation.$pristine && registration_form.email_confirmation.$touched">Email is required.</p>
+		</label>
+
+		<label for="username">
+			Username:<input type="text" name="username" ng-model="user.username" ng-minlength="3" ng-maxlength="15" required>
+			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+			<p ng-show="registration_form.username.$invalid && !registration_form.username.$pristine && registration_form.username.$touched">Username is required.</p>
+		</label>
+
+		<label for="home">
+			Origin Address:<input type="text" name="home" ng-model="user.home" ng-minlength="5" ng-maxlength="75" required>
+			<!--<div ng-messages="task_form.task_name.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_name.$touched"></div>-->
+			<p ng-show="registration_form.home.$invalid && !registration_form.home.$pristine && registration_form.home.$touched">Origin Address is required.</p>
+		</label>
+
+
+		<label for="password">
+			Password:<input type="password" name="password" ng-model="user.password" ng-minlength="7" ng-minlength="21" required>
+			<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
+			<p ng-show="registration_form.password.$invalid && !registration_form.password.$pristine && registration_form.password.$touched">Password is required.</p>
+		</label>
+
+		<label for="password_confirmation">
+			Confirm Password:<input type="password" name="password_confirmation" ng-model="user.password_confirmation" required>
+			<!-- <div ng-messages="task_form.task_length.$error" ng-messages-include="error-messages.html" ng-show="task_form.task_length.$touched"></div> -->
+			<p ng-show="">Password Confirmation does not match.</p>
+		</label>
+
+		<button class="hvr-shutter-out-horizontal green" ng-click="passportRegisterUser(); registration_form.$setPristine();registration_form.$setUntouched()" ng-disabled="registration_form.$pristine || !registration_form.$dirty || registration_form.$invalid" type="submit">Register!</button>
+		<button class="hvr-shutter-out-horizontal blue" ng-click="go('Login')">Login Here!</button>
+
+
+	</ng-form>
+</div>
+
+<style>
+button{
+	background: red;
+	padding:10px;
+}
+</style>
+
+<button ng-click="testAuth()" >Test Auth</button>
