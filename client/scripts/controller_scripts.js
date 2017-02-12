@@ -3,17 +3,16 @@
 TCommander.controller('nav_controller',['$location','$cookies','$scope', 'users_factory','users_service', function ($location, $cookies, $scope, users_factory, users_service){
 	$scope.currentUser=users_service;
 	$scope.logOutUser = function(){
-		$cookies.remove('username');
-		$cookies.remove('first_name');
-		$cookies.remove('home');
-		users_service.clearCurrentUser();
-		users_factory.logOutUser();
+		users_service.logout(function(){
+			$location.path('/login');
+		});
+		//users_factory.logOutUser();
 	}
 
 }]);
 
 //Form Controller
-TCommander.controller('routines_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
+TCommander.controller('add_task_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
 	//initialize obj to maintain consistent data type
 	$scope.task = {};
 	$scope.routine={};
@@ -64,6 +63,7 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	//retrieve all routines
 	var getAllRoutines = function(){
 		routines_factory.getAllRoutines(function(routine){
+			console.log(routine);
 			$scope.routine = routine;
 		})
 	}
@@ -111,7 +111,6 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	   	for(var x = 0;x<cities.length;++x){
 	   		geocoder.geocode( { 'address': cities[x] }, function(results, status) {
 		    	if (status == google.maps.GeocoderStatus.OK) {
-		    		console.log(results);
 		        	newAddress = results[0].geometry.location;
 		        	$scope.map.setCenter(newAddress);
 		        	createMarker(newAddress)
@@ -279,7 +278,7 @@ TCommander.controller('routines_controller',['$routeParams','$cookies','$scope',
 	get_session_task();
 	calculateTotalDuration(timeConvert);
 	locationsCheck();
-	//geoloadCurrentLocations();
+	geoloadCurrentLocations();
 }]);
 
 TCommander.controller('users_controller',['$location','$cookies','$scope', 'users_factory','users_service', function ($location, $cookies, $scope, users_factory,users_service){
@@ -297,11 +296,13 @@ TCommander.controller('users_controller',['$location','$cookies','$scope', 'user
 	}
 
 	$scope.loginUser = function(){
-		users_factory.loginUser($scope.user,function(user){
-			$cookies.put('username',user.username);
-			$cookies.put('first_name',user.first_name);
-			$cookies.put('home',user.home);
-			users_service.addCurrentUser(user);
+		users_service.login($scope.user,function(auth){
+			if(auth == true){
+				console.log('welcome');
+				$location.path('/create-a-routine');
+			}else{
+				console.log('could not log user in');
+			}
 		});
 
 	}
@@ -310,7 +311,32 @@ TCommander.controller('users_controller',['$location','$cookies','$scope', 'user
 	  $location.path(path);
 	}
 
+	$scope.testAuth = function(){
+		users_factory.testAuth();
+	}
+
+	$scope.passportRegisterUser = function(){
+		users_factory.passportRegisterUser($scope.user,function(){
+			alert("finished")
+		});
+		$scope.user={};
+	}
+
 }]);
+
+//Navbar/Users Controller
+TCommander.controller('routines_controller',['$location','$cookies','$scope', 'users_factory','users_service', function ($location, $cookies, $scope, users_factory, users_service){
+	$scope.routine={};
+
+	//retrieve all routines
+	var getAllRoutines = function(){
+		routines_factory.getAllRoutines(function(routine){
+			$scope.routine = routine;
+		})
+	}
+
+}]);
+
 
 TCommander.controller('single_routine_controller',['$routeParams','$cookies','$scope', 'routines_factory',function($routeParams,$cookies, $scope, routines_factory){
 	$scope.routine={};

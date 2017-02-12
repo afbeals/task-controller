@@ -109,9 +109,15 @@ module.exports =
 	},
 
 	getAllRoutines : function(req,res){
-		User.findOne({username: req.session.username}).populate('_routine _task').exec(function(err,routine) {
+		User.findOne({_id: req}).populate('_routine _task').exec(function(err,routine) {
+			var options = {
+				path: '_routine._task',
+				model: 'Task'
+			};
 			if(err)return handleError(err);
-		  	res.json(routine);
+			User.populate(routine,options,function(err,routine){
+				res.json(routine);
+			});
 		});
 	}
 }
