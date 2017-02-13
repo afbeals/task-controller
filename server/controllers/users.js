@@ -1,11 +1,12 @@
-var mongoose = require('mongoose');
-var Routine = mongoose.model('Routine');
-var Task = mongoose.model('Task');
-var User = mongoose.model('User');
+var mongoose = require('mongoose'),
+	Routine = mongoose.model('Routine'),
+	Task = mongoose.model('Task'),
+	User = mongoose.model('User');
 
 module.exports =
 {
 	loginUser : function (req,username,password,done){
+		//username supplied by passport automatically
 		User.findOne({username:username, password: password},function(err,user){
 			if(err){
 				 return done(err);
@@ -18,6 +19,7 @@ module.exports =
 	},
 
 	registerUser : function (req,username,password,done){
+		//username supplied by passport automatically
 		if(req.body.password === req.body.password_confirmation && req.body.email === req.body.email_confirmation){
 	      var user = new User({	first_name: req.body.first_name, 
 	      						last_name: req.body.last_name, 

@@ -3,18 +3,6 @@ TCommander.service('users_service',function($http){
 	var service = {},
 		localStorageId = 'ABoloknas1tGCTelrr';
 
-//replace by login service
-	// service.addCurrentUser = function(user){
-	// 	service.currentUser = user.username;
-	// 	service.first_name = user.first_name;
-	// 	service.home = user.home;
-	// 	service.email = user.email;
-	// }
-//replace by logout service
-	// service.clearCurrentUser = function(){
-	// 	service.currentUser = '';
-	// }
-
 	service.login = function(user,callback){
 		//make a call to loginUser with the users cred.
 		$http.post('/loginUser', user).success(function(response){

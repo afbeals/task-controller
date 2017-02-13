@@ -62,35 +62,6 @@ TCommander.factory('users_factory', function($cookies, $http, $location) {
 		})
 	}
 
-	//moved to service
-	// factory.loginUser = function(user,callback){
-	// 	$http.post('/loginUser',user).success(function(data){
-	// 		$location.path("Create-A-Routine");
-	// 		callback(data);
-	// 	}).error(function(){
-	// 		console.log("there was an error logging user in")
-	// 	})
-	// }
-
-	//moved to service
-	// factory.logOutUser = function(){
-	// 	$http.post('/logOutUser').success(function(){
-	// 		$location.path("/");
-	// 	}).error(function(){
-	// 		console.log("there was an error logging user out")
-	// 	})
-	// }
-//will be moved to header.auth service to be auto sent with all request
-	factory.testAuth = function(){
-		console.log(testobj);
-		$http.post('/test', testobj).success(function(){
-			console.log('so successfulj!')
-			//callback();
-		}).error(function(){
-			console.log("there was an error in registering user");
-		})
-	}
-
 	factory.passportRegisterUser = function(user,callback){
 		$http.post('/passportRegister',user).success(function(jwt){
 			console.log(jwt);

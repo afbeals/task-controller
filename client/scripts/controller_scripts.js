@@ -6,7 +6,6 @@ TCommander.controller('nav_controller',['$location','$cookies','$scope', 'users_
 		users_service.logout(function(){
 			$location.path('/login');
 		});
-		//users_factory.logOutUser();
 	}
 
 }]);
@@ -253,11 +252,12 @@ TCommander.controller('add_task_controller',['$routeParams','$cookies','$scope',
 
 	//add previous task to newRoutine
 	$scope.addPreviousTask = function(task_name){
-		for(var task in $scope.routine._task){
-			if($scope.routine._task[task].task_name == task_name){
-				$scope.task.task_name = $scope.routine._task[task].task_name
-				$scope.task.task_length = $scope.routine._task[task].task_length
-				$scope.task.task_location = $scope.routine._task[task].task_location
+		console.log($scope.routine);
+		for(var task in $scope.routine.tasks){
+			if($scope.routine.tasks[task].task_name == task_name){
+				$scope.task.task_name = $scope.routine.tasks[task].task_name
+				$scope.task.task_length = $scope.routine.tasks[task].task_length
+				$scope.task.task_location = $scope.routine.tasks[task].task_location
 			}
 		}
 	}
@@ -265,8 +265,8 @@ TCommander.controller('add_task_controller',['$routeParams','$cookies','$scope',
 	//check if present in routine
 	$scope.presentInDatabase = function(task_name){
 		var present = false;
-		for (var task in $scope.routine._task){
-			if($scope.routine._task[task].task_name == task_name){
+		for (var task in $scope.routine.tasks){
+			if($scope.routine.tasks[task].task_name == task_name){
 				present = true;
 			}
 		}
@@ -324,17 +324,27 @@ TCommander.controller('users_controller',['$location','$cookies','$scope', 'user
 
 }]);
 
-//Navbar/Users Controller
-TCommander.controller('routines_controller',['$location','$cookies','$scope', 'users_factory','users_service', function ($location, $cookies, $scope, users_factory, users_service){
+//routines Controller
+TCommander.controller('routines_controller',['$location','$cookies','$scope', 'users_factory','users_service','routines_factory', function ($location, $cookies, $scope, users_factory, users_service,routines_factory){
 	$scope.routine={};
+	$scope.displayedRoutine = {};
+
 
 	//retrieve all routines
 	var getAllRoutines = function(){
 		routines_factory.getAllRoutines(function(routine){
 			$scope.routine = routine;
+			console.log(routine);
 		})
 	}
 
+	$scope.displayRoutine = function(routine){
+		$scope.displayedRoutine = routine;
+
+	}
+
+	//starter functions
+	getAllRoutines();
 }]);
 
 
@@ -346,6 +356,7 @@ TCommander.controller('single_routine_controller',['$routeParams','$cookies','$s
 	var getRoutine = function(){
 		routines_factory.getRoutine($scope.param,function(routine){
 			$scope.routine = routine;
+			console.log(routine);
 		})
 	}
 

@@ -1,14 +1,14 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+	Routine = mongoose.model('Routine'),
+	Task = mongoose.model('Task'),
+	User = mongoose.model('User');
 mongoose.Promise = require('bluebird');
-var Routine = mongoose.model('Routine');
-var Task = mongoose.model('Task');
-var User = mongoose.model('User');
 
 module.exports =
 {
 	createRoutine : function(req,res){
 		//find user to gain access to 'user' variable
-		User.findOne({username: req.session.username},function(err,user){
+		User.findOne({username: req.body.username},function(err,user){
 			if(err){
 				console.log("createRoutine User.findOne err: ",err);
 				res.sendStatus(400);
@@ -109,14 +109,19 @@ module.exports =
 	},
 
 	getAllRoutines : function(req,res){
+		//find user, populate immediate _routine/_task keys
 		User.findOne({_id: req}).populate('_routine _task').exec(function(err,routine) {
+			//also populate _routine._task using Task model
 			var options = {
 				path: '_routine._task',
 				model: 'Task'
 			};
 			if(err)return handleError(err);
+			//grab all routines, pass obj to front end
 			User.populate(routine,options,function(err,routine){
-				res.json(routine);
+
+				res.json({routines:routine._routine,tasks:routine._task,home:routine.home,username:routine.username});
+				
 			});
 		});
 	}

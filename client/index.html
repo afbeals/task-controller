@@ -1,11 +1,12 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <!-- give app control -->
 <html ng-app="TaskCommanderApp" lang="en">
 <head>
 	<meta name="Task Commander" description="Take control of your task" />
 	<title>Task Commander</title>
 	<!-- Jquery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
 	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
 	<!--Angular -->
@@ -16,11 +17,11 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" ></script>
 	<!-- CSS Files -->
-	<link rel="stylesheet" type="text/css" href="./css/TCommander_style.css">
+	<link rel="stylesheet" type="text/css" href="../css/TCommander_style.css">
 	<!--Font Awesome -->
 	<link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<!-- Modernizr -->
-	<script src="./js/modernizr-2.6.2.min.js"></script>
+	<script src="../js/modernizr-2.6.2.min.js"></script>
 	<!-- ngmessages for client side validation-->
 	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-messages.js"></script>
 	<!-- ngCookies for angular cookies -->
@@ -30,15 +31,15 @@
 	var TCommander = angular.module('TaskCommanderApp', ['ngRoute','ngMessages','ngCookies']);
 	</script>
 	<!-- Angular Routing Source -->
-	<script type="text/javascript" src="./scripts/routing_scripts.js"></script>
+	<script type="text/javascript" src="../scripts/routing_scripts.js"></script>
 	<!-- Factory Source -->
-	<script type="text/javascript" src="./scripts/factory_scripts.js"></script>
+	<script type="text/javascript" src="../scripts/factory_scripts.js"></script>
 	<!-- Controller Source -->
-	<script type="text/javascript" src="./scripts/controller_scripts.js"></script>
+	<script type="text/javascript" src="../scripts/controller_scripts.js"></script>
 	<!-- Directive Source -->
-	<script type="text/javascript" src="./scripts/directive_scripts.js"></script>
+	<script type="text/javascript" src="../scripts/directive_scripts.js"></script>
 	<!-- Services Source -->
-	<script type="text/javascript" src="./scripts/services_scripts.js"></script>
+	<script type="text/javascript" src="../scripts/services_scripts.js"></script>
 	<!-- Google Maps JavaScript API -->
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCknN-ANnhDBwcvNZWR7icwYu6YnLL40qk&callback=initMap" defer></script>
 	<base href="/">
@@ -52,7 +53,7 @@
 		</div>
 		<div class="component" >
 			<!-- Start Nav Structure -->
-			<button class="cn-button" id="cn-button" tccomponentscroll>Menu</button>
+			<button class="cn-button" id="cn-button" tccomponentscroll tcbuttoncloser>Menu</button>
 			<div class="cn-wrapper" id="cn-wrapper">
 				<ul>
 					<li><a href="/profile"><span>Profile</span></a></li>

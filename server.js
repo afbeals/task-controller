@@ -1,32 +1,16 @@
-var path = require("path");
-var express = require("express");
-var app = express();
-//var session = require("express-session");
-var jwt = require('jsonwebtoken');
-var passport = require('passport');
-//var passportJwt = require('passport-jwt');
+var path = require("path"),
+	express = require("express"),
+	app = express(),
+	jwt = require('jsonwebtoken'),
+	passport = require('passport'),
+	bodyParser = require("body-parser");
 
-var bodyParser = require("body-parser");
 app.use(bodyParser.json());
 
 app.use(express.static(path.join(__dirname, "./client")));
 require('./server/config/mongoose.js');
 require('./server/config/passport.js')(passport);
 app.use(passport.initialize());
-
-//session no longer being created
-// app.use(session({
-//                   secret: "MyNotSecureSecret",
-//                   saveUninitialized: true,
-//                   resave: false,
-//                   cookie: {
-//                             maxAge: 36000000,
-//                           }
-//                 }));
-
-
-
-
 
 var routes_setter = require('./server/config/routes.js');
 routes_setter(app,passport);

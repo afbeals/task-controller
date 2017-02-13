@@ -4,7 +4,7 @@
 			<p>Previous Task:</p>
 			<div id="closeTab"><i class="fa fa-times-circle-o" aria-hidden="true"></i></div>
 			<label for="previous_task">
-				<select name="previous_task" ng-options="task as task.task_name for task in routine._task" ng-change="addPreviousTask(selected.task_name)" ng-model="selected">
+				<select name="previous_task" ng-options="task as task.task_name for task in routine.tasks" ng-change="addPreviousTask(selected.task_name)" ng-model="selected">
 				</select>
 			</label>
 		</ng-form>	

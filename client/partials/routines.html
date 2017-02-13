@@ -1,8 +1,15 @@
+<!-- all routines -->
 <div class="routines">
 	<div class="routine_list">
+	<ul>
+		<li ng-repeat="routine in routine.routines" ng-click="displayRoutine(routine)">{{routine.routine_name}}</li>
+	</ul >
 
 	</div>
 	<div class="routine_view">
-		
+		{{displayedRoutine.routine_name}}
+		<ul>
+		<li ng-repeat="tasks in displayedRoutine._task">{{tasks.task_name}},{{tasks.task_length}},{{tasks.task_location}}</li>
+		</ul>
 	</div>
 </div>

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose');
-var Routine = mongoose.model('Routine');
-var Task = mongoose.model('Task');
-var User = mongoose.model('User');
+var mongoose = require('mongoose'),
+	Routine = mongoose.model('Routine'),
+	Task = mongoose.model('Task'),
+	User = mongoose.model('User');
 
 module.exports =
 {

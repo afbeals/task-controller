@@ -1,6 +1,7 @@
 //Front End Directives
 //Routine Creation Directive
 
+//Create-A-Routine side tab visual functionality
 TCommander.directive('tcsidetab', [function() {
 	var linker = function(scope, element, attrs){
 		$('#openSide').on('click',function(){
@@ -21,6 +22,7 @@ TCommander.directive('tcsidetab', [function() {
     }
 }]);
 
+//nav menu button scroll on click funtionality
 TCommander.directive('tccomponentscroll', [function() {
 	var links = function(scope, element, attrs){
 		$('#cn-button').on('click',function(){
@@ -33,4 +35,16 @@ TCommander.directive('tccomponentscroll', [function() {
 		restrict: 'EA',
         link: links
     }
+}]);
+
+TCommander.directive('tcbuttoncloser',[function(){
+	var link = function(scope,element,attrs){
+		$('#cn-wrapper').on('click',function(){
+			$('#cn-button').trigger('click');
+		});
+	}
+	return{
+		restrict: 'EA',
+		link: link
+	}
 }]);
