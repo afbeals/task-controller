@@ -1,15 +1,18 @@
 <!-- all routines -->
 <div class="routines">
 	<div class="routine_list">
+	<h1>My Routines:</h1>
 	<ul>
-		<li ng-repeat="routine in routine.routines" ng-click="displayRoutine(routine)">{{routine.routine_name}}</li>
+		<div><i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></div>
+		<li ng-repeat="routine in routine.routines" ng-click="displayRoutine(routine)" class="hvr-sweep-to-right" tclistarrowmatch>{{routine.routine_name}}</li>
+		
 	</ul >
 
 	</div>
 	<div class="routine_view">
-		{{displayedRoutine.routine_name}}
+		<h1>{{displayedRoutine.routine_name}}</h1>
 		<ul>
-		<li ng-repeat="tasks in displayedRoutine._task">{{tasks.task_name}},{{tasks.task_length}},{{tasks.task_location}}</li>
+		<li ng-repeat="tasks in displayedRoutine._task"><span>name: </span><p>{{tasks.task_name}},</p><span>length: </span><p>{{tasks.task_length}}</p><br><span>location: </span><p>{{tasks.task_location}}</p></li>
 		</ul>
 	</div>
 </div>

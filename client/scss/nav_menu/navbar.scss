@@ -4,17 +4,19 @@
 }
 #profileSiloutte{
 	position: absolute;
-    bottom: -16px;
+    bottom: 0px;
     margin: 0px 15px 4px 15px;
     z-index:1;
 	i{
-		bottom: -12px;
+		//bottom: -12px;
 		font-size: 4em;
+		vertical-align: bottom;
 	}
 	p{
 		font-size: 2em;
     	display: inline-block;
-    	vertical-align: text-top;
+    	//vertical-align: text-top;
+    	bottom:-18px;
 	}
 }
 #logOut{

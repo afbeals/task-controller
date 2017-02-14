@@ -140,16 +140,16 @@ table {
 
 #profileSiloutte {
   position: absolute;
-  bottom: -16px;
+  bottom: 0px;
   margin: 0px 15px 4px 15px;
   z-index: 1; }
   #profileSiloutte i {
-    bottom: -12px;
-    font-size: 4em; }
+    font-size: 4em;
+    vertical-align: bottom; }
   #profileSiloutte p {
     font-size: 2em;
     display: inline-block;
-    vertical-align: text-top; }
+    bottom: -18px; }
 
 #logOut {
   position: absolute;
@@ -650,6 +650,60 @@ table {
       background: #fff;
       border: 1px solid #747474; }
 
+.routines {
+  background: #f3f3f3;
+  top: -32px; }
+  .routines .routine_list {
+    width: 49%;
+    display: inline-block;
+    font-size: 2.5em;
+    vertical-align: top;
+    font-family: "Chivo", sans-serif;
+    padding: 10px; }
+    .routines .routine_list ul {
+      background: #337ab7; }
+      .routines .routine_list ul li {
+        cursor: pointer;
+        text-transform: capitalize;
+        background: white;
+        padding: 6px;
+        border-top: 1px solid #337ab7;
+        border-left: 1px solid #337ab7;
+        border-bottom: 1px solid #337ab7;
+        width: 91%; }
+      .routines .routine_list ul div {
+        position: relative;
+        float: right;
+        right: 13px;
+        font-size: .9em;
+        top: 10px;
+        color: white; }
+  .routines .routine_view {
+    width: 49%;
+    display: inline-block;
+    font-size: 2.5em;
+    vertical-align: top;
+    font-family: "Chivo", sans-serif;
+    padding: 10px; }
+    .routines .routine_view ul {
+      background: #337ab7; }
+      .routines .routine_view ul li {
+        text-transform: capitalize;
+        background: white;
+        padding: 6px;
+        border-top: 1px solid #337ab7;
+        border-left: 1px solid #337ab7;
+        border-bottom: 1px solid #337ab7;
+        width: 95%;
+        margin-left: 25px;
+        font-size: 0.8em; }
+        .routines .routine_view ul li span, .routines .routine_view ul li p {
+          display: inline-block; }
+        .routines .routine_view ul li span {
+          font-weight: 700;
+          margin-right: 5px;
+          margin-left: 10px; }
+
 body {
   display: block;
   max-width: 1120px;
@@ -1004,3 +1058,40 @@ h2 {
   animation-timing-function: ease-in-out;
   -webkit-animation-iteration-count: 1;
   animation-iteration-count: 1; }
+
+/* Sweep To Right */
+.hvr-sweep-to-right {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  position: relative;
+  -webkit-transition-property: color;
+  transition-property: color;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s; }
+  .hvr-sweep-to-right:before {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #337ab7;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transform-origin: 0 50%;
+    transform-origin: 0 50%;
+    -webkit-transition-property: transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+    -webkit-transition-timing-function: ease-out;
+    transition-timing-function: ease-out; }
+  .hvr-sweep-to-right:hover, .hvr-sweep-to-right:focus, .hvr-sweep-to-right:active {
+    color: white; }
+    .hvr-sweep-to-right:hover:before, .hvr-sweep-to-right:focus:before, .hvr-sweep-to-right:active:before {
+      -webkit-transform: scaleX(1);
+      transform: scaleX(1); }

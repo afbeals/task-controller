@@ -37,10 +37,32 @@ TCommander.directive('tccomponentscroll', [function() {
     }
 }]);
 
+//close button after selecting route
 TCommander.directive('tcbuttoncloser',[function(){
 	var link = function(scope,element,attrs){
 		$('#cn-wrapper').on('click',function(){
 			$('#cn-button').trigger('click');
+		});
+	}
+	return{
+		restrict: 'EA',
+		link: link
+	}
+}]);
+
+//routines view, match cursor to mouse position
+TCommander.directive('tclistarrowmatch',[function(){
+	var link = function(scope,element,attrs){
+		// match mouse
+		// $('.routine_list ul li').on('mousemove',function(){
+		// 	var thisIndex = $(this).index();
+		//     $('.routine_list ul div').css({top:60+(thisIndex*5)});
+		// });
+		// slide to same spot everytime
+		$('.routine_list ul li').on('mouseover',function(){
+			var thisIndex = $(this).index()-1;
+			var thisArrow = 10+((60*thisIndex)+(thisIndex*5));
+		    $('.routine_list ul div').stop().animate({top:thisArrow},500);
 		});
 	}
 	return{

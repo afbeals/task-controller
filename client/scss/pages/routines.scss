@@ -1,0 +1,64 @@
+.routines{
+	background:#f3f3f3;
+	top: $partialTopSpacing;
+	.routine_list{
+		width:49%;
+		display:inline-block;
+		font-size:2.5em;
+		vertical-align: top;
+		font-family: $Chivo;
+		padding:10px;
+		ul{
+			background:$primary-blue;
+			li{
+				cursor: pointer;
+				text-transform: capitalize;
+				background: white;
+    			padding: 6px;
+    			border-top: 1px solid $primary-blue;
+    			border-left: 1px solid $primary-blue;
+    			border-bottom: 1px solid $primary-blue;
+    			width:91%;
+			}
+			div{
+				position: relative;
+			    float: right;
+			    right: 13px;
+			    font-size: .9em;
+			    top: 10px;
+			    color: white;
+			}
+		}
+	}
+	.routine_view{
+		width:49%;
+		display:inline-block;
+		font-size:2.5em;
+		vertical-align: top;
+		font-family: $Chivo;
+		padding:10px;
+		ul{
+			background: $primary-blue;
+			li{
+				text-transform: capitalize;
+				background: white;
+    			padding: 6px;
+    			border-top: 1px solid $primary-blue;
+    			border-left: 1px solid $primary-blue;
+    			border-bottom: 1px solid $primary-blue;
+    			width:95%;
+    			margin-left:25px;
+    			font-size:0.8em;
+    			span,p{
+    				display: inline-block;
+
+    			}
+    			span{
+    				font-weight: 700;
+   					margin-right: 5px;
+    				margin-left: 10px;
+    			}
+			}
+		}
+	}
+}
