@@ -8,7 +8,7 @@ TCommander.factory('routines_factory', function($http, $location)
 	//unused
 
 	//get newRoutine, create & use deep copy to not update scope obj
-	factory.createRoutine = function(newRoutine){
+	factory.createRoutine = function(newRoutine,callback){
 		// create deep copy of routine
 		var routineCopy = {};
 		routineCopy = angular.copy(newRoutine);
@@ -19,6 +19,7 @@ TCommander.factory('routines_factory', function($http, $location)
 		//pass deep copy to server for db submission
 		$http.post('/createRoutine',routineCopy).success(function(){
 			console.log("successful addAllTask");
+			callback();
 		}).error(function(){
 			alert('....well that was weird, lets try that again!');
 			console.log("factory.createRoutine error received");
@@ -48,7 +49,7 @@ TCommander.factory('routines_factory', function($http, $location)
 });
 
 //Users Factory
-TCommander.factory('users_factory', function($cookies, $http, $location) {
+TCommander.factory('users_factory', function($http, $location) {
 	//initialize factory obj.
 	var factory = {};
 	var testobj = {};
@@ -59,16 +60,6 @@ TCommander.factory('users_factory', function($cookies, $http, $location) {
 			callback();
 		}).error(function(){
 			console.log("there was an error in registering user")
-		})
-	}
-
-	factory.passportRegisterUser = function(user,callback){
-		$http.post('/passportRegister',user).success(function(jwt){
-			console.log(jwt);
-			testobj = jwt;
-			callback();
-		}).error(function(message,response){
-			console.log(message,response);
 		})
 	}
 

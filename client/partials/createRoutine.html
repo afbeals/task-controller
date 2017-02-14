@@ -34,7 +34,7 @@
 		<h2>Current Tasks</h2>
 		<ul>
 			<li ng-repeat="task in newRoutine.tasks | orderBy: 'order'">
-				Task: <span>{{task.task_name}}</span>, Task Duration: <span>{{task.task_length}} min(s)</span>, Travel Time To {{task.task_name}}: <span>{{task.task_duration}}</span>
+				Task: <span>{{task.task_name}}</span>, Task Duration: <span>{{task.task_length}} min(s)</span>, Travel Time To {{task.task_name}}: <span>{{task.task_duration | total_duration_conversion | date:'HH:mm:ss'}}</span>
 				<button class="hvr-icon-spin" ng-click="removeTask(task.task_name)">Remove</button>
 			</li>
 		</ul>

@@ -7,12 +7,13 @@ mongoose.Promise = require('bluebird');
 module.exports =
 {
 	createRoutine : function(req,res){
+		console.log(req.body)
 		//find user to gain access to 'user' variable
-		User.findOne({username: req.body.username},function(err,user){
+		User.findOne({username: req.body._username},function(err,user){
 			if(err){
 				console.log("createRoutine User.findOne err: ",err);
 				res.sendStatus(400);
-				res.end();
+				
 			}else{
 				//check if routine name already exist in 'user' _routine
 				var routineCheck = function(routine_name){
@@ -25,7 +26,7 @@ module.exports =
 				}
 				if(routineCheck(req.body.routine_name)){
 					res.sendStatus(400);
-					res.end();
+					
 				}else{
 					//create new Routine instance, assigning values to model defined keys; using req info and 'user' info
 					var routine = new Routine({routine_name: req.body.routine_name, total_duration: req.body.total_duration,_username:user._id});
@@ -34,7 +35,7 @@ module.exports =
 						if(err){
 							console.log('createRoutine routine.save err: ',err);
 							res.sendStatus(400);
-							res.end();
+							
 						}else{
 							//push 'routine' created id in 'user' _routine foreign key
 							user._routine.push(routine._id);
@@ -43,7 +44,7 @@ module.exports =
 								if(err){
 									console.log('createRoutine user.save err: ',err);
 									res.sendStatus(400);
-									res.end();
+									
 								}else{
 									//store all task ids in array to be pushed into 'user' and 'routine'
 									var tasksIds = [];
@@ -65,7 +66,7 @@ module.exports =
 											if(err){
 												console.log("createRoutine task.save err: ",err);
 												res.sendStatus(400);
-												res.end();
+												
 											}
 										})
 									}
@@ -73,16 +74,16 @@ module.exports =
 										if(err){
 											console.log("createRoutine routine.save 2 err: ",err);
 											res.sendStatus(400);
-											res.end();
+											
 										}else{				
 											user.save(function(err,user){
 												if(err){
 													console.log('createRoutine user.save 2 err: ', err);
 													res.sendStatus(400);
-													res.end();
+													
 												}else{
 													res.sendStatus(200);
-													res.end();
+													
 												}
 											});
 										}
@@ -101,7 +102,7 @@ module.exports =
 			if(err){
 				console.log("Routines getRoutine err: ", err);
 				res.sendStatus(400);
-				res.end();
+				
 			}else{
 				res.json(routine);
 			}
